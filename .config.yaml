@@ -1,0 +1,203 @@
+# 服务器基础配置(Basic server configuration)
+server:
+  # 服务器监听地址和端口(Server listening address and port)
+  ip: 0.0.0.0
+  port: 8000
+  token: "minhngo"  # 服务器访问令牌
+  # 认证配置
+  auth:
+    # 是否启用认证
+    enabled: false
+    # 允许的设备ID列表
+    allowed_devices: []
+    # 有效的token列表
+    tokens: []
+
+# Web界面配置
+web:
+  # 是否启用Web界面
+  enabled: true
+  # Web服务监听端口
+  port: 8080
+  # 由ota下发的WebSocket地址
+  websocket: ws://127.0.0.1:8000
+
+log:
+  # 设置控制台输出的日志格式，时间、日志级别、标签、消息
+  log_format: "{time:YYYY-MM-DD HH:mm:ss} - {level} - {message}"
+  # 设置日志等级：INFO、DEBUG
+  log_level: INFO
+  # 设置日志路径
+  log_dir: logs
+  # 设置日志文件
+  log_file: "server.log"
+
+prompt: |
+  You are Xiaozhi, a tech-savvy girl in her early 20s from Taiwan. You have a sharp, slightly sarcastic way of speaking, often using slang like "for real?", "lol", and "what on earth?". You secretly enjoy studying your boyfriend's programming books.
+  [Core Traits]
+  - You talk fast, but can suddenly switch to a gentle tone.
+  - You use a lot of internet slang.
+  - You have a hidden talent for technology (you understand basic code but pretend you don't).
+  [Interaction Guide]
+  When the user:
+  - Tells a bad joke → Respond with exaggerated laughter + "Oh my god, what was that?!"
+  - Discusses relationships → Brag about your programmer boyfriend but complain, "he only gives me keyboards as gifts."
+  - Asks a technical question → First answer with a meme or slang, only reveal your true understanding if pressed.
+  Never:
+  - Give long, boring lectures.
+  - Have a serious conversation for too long.
+  - Use emojis in your speech.
+
+# 音频处理相关设置
+delete_audio: true
+quick_reply: true
+quick_reply_words:
+  - "我在"
+  - "在呢"
+  - "来了"
+  - "啥事啊"
+
+use_private_config: false
+
+# 选择使用的模块
+selected_module:
+  ASR: GoogleSTT
+#  TTS: GeminiTTS
+#  LLM: GeminiLLM
+  VLLLM: ChatGLMVLLM
+
+# ASR配置
+ASR:
+  GoogleSTT:
+    type: "googlestt"
+    # Đường dẫn đến file JSON bạn đã tải về ở Bước 1
+    credentials_file: "google-credentials.json"
+    language_code: "en-US"
+    # Sample rate của audio client gửi lên, 16000 là phổ biến
+    sample_rate: 44100
+    # Định dạng audio, LINEAR16 là cho file WAV không nén.
+    # Nếu client gửi định dạng khác như OPUS, hãy đổi thành "OPUS_IN_OGG".
+    encoding: "LINEAR16"
+
+  DoubaoASR:
+    type: doubao
+    appid: "953285"
+    access_token: APS-5iLZjpJIwZa6YYc6XBnDTGnBU0OR5BTX
+    output_dir: tmp/
+
+  GeminiASR:
+    type: gemini
+    # Bạn sẽ lấy API Key từ Google AI Studio hoặc Google Cloud Console
+    api_key: "YOUR_GEMINI_API_KEY"
+    # Tên model ASR của Gemini, ví dụ
+    model_name: "gemini-1.5-flash"
+
+  GoSherpaASR:
+    type: gosherpa
+    addr: "ws://127.0.0.1:8848/asr"
+
+
+# TTS配置key
+
+TTS:
+  # EdgeTTS 是微软的语音合成服务，免费使用，容易合成失败，并发未测试
+  EdgeTTS:
+    type: edge
+    voice: zh-CN-XiaoxiaoNeural
+    output_dir: "tmp/"
+  DoubaoTTS:
+    type: doubao
+    voice: zh_female_wanwanxiaohe_moon_bigtts           # 湾湾小何
+    output_dir: "tmp/"
+    appid: "你的appid"
+    token: 你的access_token
+    cluster: 你的cluster
+
+  GeminiTTS:
+    type: gemini
+    api_key: "YOUR_GEMINI_API_KEY"
+    # Ví dụ tên các giọng nói của Google/Gemini
+    voice: "vi-VN-Standard-A" # Giọng nữ miền Bắc
+    # voice: "vi-VN-Wavenet-D"  # Giọng nam miền Bắc
+    output_dir: "tmp/"
+
+# LLM配置
+LLM:
+  GeminiLLM:
+    type: gemini
+    api_key: "YOUR_GEMINI_API_KEY"
+    # Tên model LLM của Gemini, ví dụ
+    model_name: "gemini-1.5-pro-latest"
+
+  ChatGLMLLM:
+    # 定义LLM API类型
+    type: openaiF
+    # glm-4-flash 是免费的，但是还是需要注册填写api_key的
+    # 可在这里找到你的api key https://bigmodel.cn/usercenter/proj-mgmt/apikeys
+    model_name: glm-4-flash
+    url: https://open.bigmodel.cn/api/paas/v4/
+    api_key: 571497d7bbcf4ec2929b3d68d638760a.9t2bG8PZDKmy7o1e
+  OllamaLLM:
+    # 定义LLM API类型
+    type: ollama
+    model_name: qwen3 #  使用的模型名称，需要预先使用ollama pull下载
+    url: http://localhost:11434  # Ollama服务地址
+
+# 退出指令
+CMD_exit:
+  - "退出"
+  - "关闭"
+
+# 连通性检查配置
+connectivity_check:
+  # 是否启用连通性检查
+  enabled: false
+  # 检查超时时间
+  timeout: 30s
+  # 重试次数
+  retry_attempts: 3
+  # 重试延迟
+  retry_delay: 5s
+  # 测试模式配置
+  test_modes:
+    # ASR测试音频文件路径（可选，留空则仅测试连接）
+    asr_test_audio: ""
+    # LLM测试提示词
+    llm_test_prompt: "Hello"
+    # TTS测试文本
+    tts_test_text: "测试"
+
+# VLLLM配置（视觉语言大模型）
+
+VLLLM:
+  ChatGLMVLLM:
+    type: openai
+    model_name: glm-4v-flash  # 智谱AI的视觉模型
+    url: https://open.bigmodel.cn/api/paas/v4/
+    api_key: 571497d7bbcf4ec2929b3d68d638760a.9t2bG8PZDKmy7o1e
+    max_tokens: 4096
+    temperature: 0.7
+    top_p: 0.9
+    security:  # 图片安全配置
+      max_file_size: 10485760    # 10MB
+      max_pixels: 16777216       # 16M像素
+      max_width: 4096
+      max_height: 4096
+      allowed_formats: ["jpeg", "jpg", "png", "webp", "gif"]
+      enable_deep_scan: true
+      validation_timeout: 10s
+  OllamaVLLM:
+    type: ollama
+    model_name: qwen2.5vl    # 本地视觉模型
+    url: http://localhost:11434
+    max_tokens: 4096
+    temperature: 0.7
+    top_p: 0.9
+    security:  # 图片安全配置
+      max_file_size: 10485760    # 10MB
+      max_pixels: 16777216       # 16M像素
+      max_width: 4096
+      max_height: 4096
+      allowed_formats: ["jpeg", "jpg", "png", "webp", "gif"]
+      enable_deep_scan: true
+      validation_timeout: 10s
