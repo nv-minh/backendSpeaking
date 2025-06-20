@@ -43,33 +43,21 @@ func (w *websocketConn) ReadMessage() (messageType int, p []byte, err error) {
 }
 
 func (w *websocketConn) WriteMessage(messageType int, data []byte) error {
-	// 检查连接状态
 	if atomic.LoadInt32(&w.closed) == 1 {
 		return ErrConnectionClosed
 	}
-
-	// 使用写锁确保写操作的串行化
 	w.writeMu.Lock()
 	defer w.writeMu.Unlock()
-
-	// 双重检查，防止在获取锁的过程中连接被关闭
 	if atomic.LoadInt32(&w.closed) == 1 {
 		return ErrConnectionClosed
 	}
-
-	// 设置写入超时
-	w.conn.SetWriteDeadline(time.Now().Add(30 * time.Second))
-
+	// w.conn.SetWriteDeadline(time.Now().Add(30 * time.Second)) // Có thể thêm timeout nếu cần
 	err := w.conn.WriteMessage(messageType, data)
 	if err != nil {
-		// 如果写入出错，标记连接为已关闭
 		atomic.StoreInt32(&w.closed, 1)
 		return err
 	}
-
-	// 更新最后活跃时间
 	atomic.StoreInt64(&w.lastActive, time.Now().Unix())
-
 	return nil
 }
 
