@@ -1,6 +1,7 @@
 package llm
 
 import (
+	"context"
 	"fmt"
 
 	"xiaozhi-server-go/src/core/types"
@@ -8,14 +9,28 @@ import (
 
 // Config LLM配置结构
 type Config struct {
-	Type        string                 `yaml:"type"`
-	ModelName   string                 `yaml:"model_name"`
-	BaseURL     string                 `yaml:"base_url,omitempty"`
-	APIKey      string                 `yaml:"api_key,omitempty"`
-	Temperature float64                `yaml:"temperature,omitempty"`
-	MaxTokens   int                    `yaml:"max_tokens,omitempty"`
-	TopP        float64                `yaml:"top_p,omitempty"`
-	Extra       map[string]interface{} `yaml:",inline"`
+	Type         string                 `yaml:"type"`
+	ModelName    string                 `yaml:"model_name"`
+	BaseURL      string                 `yaml:"base_url,omitempty"`
+	APIKey       string                 `yaml:"api_key,omitempty"`
+	SystemPrompt string                 `yaml:"prompt,omitempty"`
+	Temperature  float64                `yaml:"temperature,omitempty"`
+	MaxTokens    int                    `yaml:"max_tokens,omitempty"`
+	TopP         float64                `yaml:"top_p,omitempty"`
+	Extra        map[string]interface{} `yaml:",inline"`
+}
+
+// Message định nghĩa cấu trúc một tin nhắn trong cuộc trò chuyện.
+type Message struct {
+	Role    string `json:"role"` // "user", "assistant", "system"
+	Content string `json:"content"`
+}
+
+// LLMProvider là interface mà tất cả các nhà cung cấp LLM phải implement.
+type LLMProvider interface {
+	Initialize() error
+	Cleanup() error
+	Chat(ctx context.Context, sessionID string, prompt string) (*Message, error)
 }
 
 // Provider LLM提供者接口

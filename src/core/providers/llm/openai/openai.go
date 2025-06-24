@@ -16,6 +16,10 @@ type Provider struct {
 	maxTokens int
 }
 
+func (p *Provider) Chat(ctx context.Context, sessionID string, prompt string) (*types.Message, error) {
+	return nil, fmt.Errorf("not implemented")
+}
+
 // 注册提供者
 func init() {
 	llm.Register("openai", NewProvider)

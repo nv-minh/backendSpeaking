@@ -2,6 +2,7 @@ package ollama
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"strings"
 	"xiaozhi-server-go/src/core/providers/llm"
@@ -16,6 +17,10 @@ type Provider struct {
 	client    *openai.Client
 	modelName string
 	isQwen3   bool
+}
+
+func (p *Provider) Chat(ctx context.Context, sessionID string, prompt string) (*types.Message, error) {
+	return nil, errors.New("not implemented")
 }
 
 // 注册提供者

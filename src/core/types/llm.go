@@ -120,9 +120,7 @@ type FunctionRegistryInterface interface {
 // LLMProvider 大语言模型提供者接口
 type LLMProvider interface {
 	Provider
+	Chat(ctx context.Context, sessionID string, prompt string) (*Message, error)
 	Response(ctx context.Context, sessionID string, messages []Message) (<-chan string, error)
 	ResponseWithFunctions(ctx context.Context, sessionID string, messages []Message, tools []openai.Tool) (<-chan Response, error)
-}
-type ChatSession interface {
-	SendMessage(ctx context.Context, text string) (string, error)
 }

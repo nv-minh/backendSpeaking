@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"syscall"
 	"time"
+	"xiaozhi-server-go/src/core/pool"
 
 	"xiaozhi-server-go/src/configs"
 	"xiaozhi-server-go/src/core"
@@ -49,9 +50,9 @@ func LoadConfigAndLogger() (*configs.Config, *utils.Logger, error) {
 	return config, logger, nil
 }
 
-func StartWSServer(config *configs.Config, logger *utils.Logger, g *errgroup.Group, groupCtx context.Context) (*core.WebSocketServer, error) {
+func StartWSServer(config *configs.Config, logger *utils.Logger, pm *pool.PoolManager, g *errgroup.Group, groupCtx context.Context) (*core.WebSocketServer, error) {
 	// 创建 WebSocket 服务
-	wsServer, err := core.NewWebSocketServer(config, logger)
+	wsServer, err := core.NewWebSocketServer(config, logger, pm)
 	if err != nil {
 		return nil, err
 	}
@@ -181,9 +182,9 @@ func GracefulShutdown(cancel context.CancelFunc, logger *utils.Logger, g *errgro
 	}
 }
 
-func startServices(config *configs.Config, logger *utils.Logger, g *errgroup.Group, groupCtx context.Context) error {
+func startServices(config *configs.Config, logger *utils.Logger, pm *pool.PoolManager, g *errgroup.Group, groupCtx context.Context) error {
 	// 启动 WebSocket 服务
-	if _, err := StartWSServer(config, logger, g, groupCtx); err != nil {
+	if _, err := StartWSServer(config, logger, pm, g, groupCtx); err != nil {
 		return fmt.Errorf("启动 WebSocket 服务失败: %w", err)
 	}
 
@@ -202,6 +203,7 @@ func main() {
 		fmt.Println("加载配置或初始化日志系统失败:", err)
 		os.Exit(1)
 	}
+	poolManager, err := pool.NewPoolManager(config, logger)
 
 	// 创建可取消的上下文
 	ctx, cancel := context.WithCancel(context.Background())
@@ -211,7 +213,7 @@ func main() {
 	g, groupCtx := errgroup.WithContext(ctx)
 
 	// 启动所有服务
-	if err := startServices(config, logger, g, groupCtx); err != nil {
+	if err := startServices(config, logger, poolManager, g, groupCtx); err != nil {
 		logger.Error("启动服务失败:", err)
 		cancel()
 		os.Exit(1)

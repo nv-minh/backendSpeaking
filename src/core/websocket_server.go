@@ -5,6 +5,7 @@ import (
 	"cloud.google.com/go/speech/apiv1/speechpb"
 	"context"
 	"fmt"
+	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
 	"google.golang.org/api/option"
 	"io"
@@ -17,6 +18,7 @@ import (
 	"xiaozhi-server-go/src/connections"
 	_ "xiaozhi-server-go/src/connections" // <-- DÒNG IMPORT QUAN TRỌNG ĐÃ ĐƯỢC THÊM
 	"xiaozhi-server-go/src/core/pool"
+	_ "xiaozhi-server-go/src/core/providers/llm"
 	"xiaozhi-server-go/src/core/utils"
 	"xiaozhi-server-go/src/task"
 )
@@ -27,6 +29,7 @@ type WebSocketServer struct {
 	server            *http.Server
 	upgrader          Upgrader
 	logger            *utils.Logger
+	pm                *pool.PoolManager
 	taskMgr           *task.TaskManager
 	poolManager       *pool.PoolManager // 替换providers
 	activeConnections sync.Map          // 存储 clientID -> *ConnectionContext
@@ -38,10 +41,11 @@ type Upgrader interface {
 }
 
 // NewWebSocketServer 创建新的WebSocket服务器
-func NewWebSocketServer(config *configs.Config, logger *utils.Logger) (*WebSocketServer, error) {
+func NewWebSocketServer(config *configs.Config, logger *utils.Logger, pm *pool.PoolManager) (*WebSocketServer, error) {
 	ws := &WebSocketServer{
 		config:   config,
 		logger:   logger,
+		pm:       pm,
 		upgrader: NewDefaultUpgrader(),
 		taskMgr: func() *task.TaskManager {
 			tm := task.NewTaskManager(task.ResourceConfig{
@@ -237,51 +241,83 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 	}
 	defer conn.Close()
 
-	// Lấy cấu hình
+	// === BƯỚC 1: TÍCH HỢP LLM - LẤY PROVIDER VÀ TẠO SESSION ID ===
+	ws.logger.Info("Bắt đầu tích hợp LLM cho phiên làm việc...")
+
+	// HÃY DÙNG: Lấy cả bộ provider từ "ông chủ" PoolManager (ws.pm)
+	providerSet, err := ws.pm.GetProviderSet()
+	if err != nil {
+		ws.logger.Error("Không thể lấy ProviderSet từ PoolManager: %v", err)
+		err := conn.WriteMessage(websocket.TextMessage, []byte("Lỗi hệ thống: Server đang quá tải."))
+		if err != nil {
+			return
+		}
+		return
+	}
+	// Và trả lại cả bộ khi hàm kết thúc
+	defer func(pm *pool.PoolManager, set *pool.ProviderSet) {
+		err := pm.ReturnProviderSet(set)
+		if err != nil {
+
+		}
+	}(ws.pm, providerSet)
+
+	// Bây giờ bạn có thể lấy llmProvider từ bộ công cụ đó
+	llmProvider := providerSet.LLM
+	if llmProvider == nil {
+		ws.logger.Error("LLM Provider không có sẵn trong ProviderSet")
+		err := conn.WriteMessage(websocket.TextMessage, []byte("Bot: Xin lỗi, dịch vụ AI hiện không khả dụng."))
+		if err != nil {
+			return
+		}
+		return
+	}
+
+	// Tạo một ID phiên duy nhất cho cuộc trò chuyện này để duy trì ngữ cảnh với Gemini
+	sessionID := uuid.New().String()
+	ws.logger.Info("Phiên LLM được tạo với ID: %s", sessionID)
+	// =================================================================
+
+	// Lấy cấu hình ASR (STT)
 	credsFile := ws.config.ASR["GoogleSTT"]["credentials_file"].(string)
 	languageCode := ws.config.ASR["GoogleSTT"]["language_code"].(string)
 
 	ctx := context.Background()
 	client, err := speech.NewClient(ctx, option.WithCredentialsFile(credsFile))
 	if err != nil {
-		log.Printf("Lỗi tạo speech client: %v", err)
+		ws.logger.Error("Lỗi tạo speech client: %v", err)
 		return
 	}
-	defer func(client *speech.Client) {
-		err := client.Close()
-		if err != nil {
-
-		}
-	}(client)
+	defer client.Close()
 
 	stream, err := client.StreamingRecognize(ctx)
 	if err != nil {
-		log.Printf("Lỗi tạo streaming recognize: %v", err)
+		ws.logger.Error("Lỗi tạo streaming recognize: %v", err)
 		return
 	}
 
-	// Gửi cấu hình, yêu cầu trả về kết quả liên tục
+	// Gửi cấu hình STT, yêu cầu trả về kết quả cuối cùng (khi người dùng ngắt lời)
 	if err := stream.Send(&speechpb.StreamingRecognizeRequest{
 		StreamingRequest: &speechpb.StreamingRecognizeRequest_StreamingConfig{
 			StreamingConfig: &speechpb.StreamingRecognitionConfig{
 				Config: &speechpb.RecognitionConfig{
-					Encoding:                   speechpb.RecognitionConfig_LINEAR16,
-					SampleRateHertz:            16000, // Tần số tối ưu cho nhận dạng giọng nói
-					LanguageCode:               languageCode,
-					AudioChannelCount:          1,
-					AlternativeLanguageCodes:   []string{"vi-VN"},
+					Encoding:          speechpb.RecognitionConfig_LINEAR16,
+					SampleRateHertz:   16000,
+					LanguageCode:      languageCode,
+					AudioChannelCount: 1,
+					// Bạn có thể giữ lại các cấu hình tối ưu của mình
 					Model:                      "telephony",
 					EnableAutomaticPunctuation: true,
 				},
-				InterimResults:  false, // <-- Yêu cầu kết quả tạm thời
-				SingleUtterance: false, // <-- Xử lý luồng nói dài, không tự ngắt
+				InterimResults:  false, // Rất quan trọng: Chỉ nhận kết quả khi người dùng nói xong
+				SingleUtterance: false,
 			},
 		},
 	}); err != nil {
-		log.Printf("Lỗi gửi config đến Google: %v", err)
+		ws.logger.Error("Lỗi gửi config đến Google STT: %v", err)
 		return
 	}
-	log.Println("Google STT: Đã gửi cấu hình REAL-TIME. Sẵn sàng nhận audio...")
+	ws.logger.Info("Google STT: Đã gửi cấu hình. Sẵn sàng nhận audio...")
 
 	var wg sync.WaitGroup
 	wg.Add(1)
@@ -295,44 +331,70 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 				return
 			}
 			if err != nil {
-				log.Printf("Lỗi nhận kết quả từ Google: %v", err)
+				ws.logger.Error("Lỗi nhận kết quả từ Google STT: %v", err)
+				// Có thể thông báo lỗi cho client ở đây nếu cần
+				// conn.WriteMessage(1, []byte("Lỗi: Mất kết nối tới dịch vụ giọng nói."))
 				return
 			}
 
-			if len(resp.Results) > 0 {
-				result := resp.Results[0]
-				if len(result.Alternatives) > 0 {
-					transcript := result.Alternatives[0].Transcript
-					// Gửi về client mọi kết quả nhận được (cả tạm thời và cuối cùng)
-					if err := conn.WriteMessage(1, []byte(transcript)); err != nil {
-						log.Printf("Lỗi gửi transcript về client: %v", err)
-					}
+			if len(resp.Results) > 0 && resp.Results[0].Alternatives != nil && len(resp.Results[0].Alternatives) > 0 {
+				// Lấy bản ghi giọng nói từ STT
+				transcript := resp.Results[0].Alternatives[0].Transcript
+				ws.logger.Info("STT Transcript nhận được: \"%s\"", transcript)
+
+				// Gửi lại transcript cho client để họ biết hệ thống đã nghe thấy gì (Cải thiện UX)
+				userMessage := fmt.Sprintf("You: %s", transcript)
+				if err := conn.WriteMessage(1, []byte(userMessage)); err != nil {
+					ws.logger.Error("Lỗi gửi transcript về client: %v", err)
 				}
+
+				// === BƯỚC 2: GỌI HÀM CHAT CỦA GEMINI PROVIDER ===
+				ws.logger.Info("Đang gửi transcript tới Gemini với sessionID: %s...", sessionID)
+
+				llmResponse, err := llmProvider.Chat(ctx, sessionID, transcript)
+				if err != nil {
+					ws.logger.Error("Lỗi khi gọi Gemini LLM: %v", err)
+					// Gửi thông báo lỗi về client
+					err := conn.WriteMessage(1, []byte("Bot: Xin lỗi, tôi đang gặp sự cố khi suy nghĩ."))
+					if err != nil {
+						return
+					}
+					continue // Tiếp tục vòng lặp để nhận yêu cầu tiếp theo
+				}
+
+				ws.logger.Info("Gemini trả lời: \"%s\"", llmResponse.Content)
+
+				// Gửi câu trả lời của LLM về client
+				botMessage := fmt.Sprintf("Bot: %s", llmResponse.Content)
+				if err := conn.WriteMessage(1, []byte(botMessage)); err != nil {
+					ws.logger.Error("Lỗi gửi câu trả lời của LLM về client: %v", err)
+				}
+				// ===============================================
 			}
 		}
 	}()
 
-	// Vòng lặp đọc audio từ client và gửi đến Google
+	// Vòng lặp đọc audio từ client và gửi đến Google STT
 	for {
 		msgType, pcmChunk, err := conn.ReadMessage()
 		if err != nil {
-			log.Printf("Kết nối từ client đã đóng: %v", err)
+			ws.logger.Info("Kết nối từ client đã đóng: %v", err)
 			break
 		}
-		if msgType == 2 { // Binary
+		if msgType == 2 { // Binary Message
 			if err := stream.Send(&speechpb.StreamingRecognizeRequest{
 				StreamingRequest: &speechpb.StreamingRecognizeRequest_AudioContent{
 					AudioContent: pcmChunk,
 				},
 			}); err != nil {
-				log.Printf("Lỗi gửi audio chunk đến Google: %v", err)
+				ws.logger.Error("Lỗi gửi audio chunk đến Google: %v", err)
 			}
 		}
 	}
 
 	stream.CloseSend()
 	wg.Wait()
-	ws.logger.Info("Hoàn tất phiên /conversation.")
+	ws.logger.Info("Hoàn tất phiên /conversation với sessionID: %s.", sessionID)
 }
 
 // === THÊM PHƯƠNG THỨC HELPER NÀY VÀO TRONG *WebSocketServer ===

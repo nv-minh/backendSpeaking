@@ -2435,3 +2435,680 @@
 {"time":"2025-06-20T21:36:18.444055+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
 {"time":"2025-06-20T21:36:18.444061+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
 {"time":"2025-06-20T21:36:18.444118+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-22T13:11:58.441746+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T13:11:58.448399+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T13:11:58.448414+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T13:11:58.448423+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T13:11:58.448446+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-22T13:11:58.44846+07:00","level":"ERROR","msg":"初始化资源池管理器失败: 初始化LLM资源池失败: 未知的LLM提供者: gemini"}
+{"time":"2025-06-22T13:11:58.448471+07:00","level":"ERROR","msg":"启动服务失败:","fields":"启动 WebSocket 服务失败: 初始化资源池管理器失败: 初始化LLM资源池失败: 未知的LLM提供者: gemini"}
+{"time":"2025-06-22T13:40:29.543128+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T13:40:29.553982+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T13:40:29.553998+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T13:40:29.554008+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T13:40:29.554033+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-22T13:40:29.554049+07:00","level":"ERROR","msg":"初始化资源池管理器失败: 初始化LLM资源池失败: 未知的LLM提供者: gemini"}
+{"time":"2025-06-22T13:40:29.554059+07:00","level":"ERROR","msg":"启动服务失败:","fields":"启动 WebSocket 服务失败: 初始化资源池管理器失败: 初始化LLM资源池失败: 未知的LLM提供者: gemini"}
+{"time":"2025-06-22T14:07:04.665874+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T14:07:04.674591+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T14:07:04.674611+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T14:07:04.674621+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T14:07:04.674638+07:00","level":"ERROR","msg":"初始化资源池管理器失败: 初始化ASR资源池失败: 未知的ASR提供者: googlestt"}
+{"time":"2025-06-22T14:07:04.674651+07:00","level":"ERROR","msg":"启动服务失败:","fields":"启动 WebSocket 服务失败: 初始化资源池管理器失败: 初始化ASR资源池失败: 未知的ASR提供者: googlestt"}
+{"time":"2025-06-22T14:08:40.172924+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T14:08:40.18562+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T14:08:40.185633+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T14:08:40.185639+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T14:08:40.185654+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-22T14:08:40.185703+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-22T14:08:40.185711+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-22T14:08:40.185776+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-22T14:08:40.185829+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-22T14:08:40.185849+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-22T14:08:40.185896+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-22T14:08:40.186054+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-22T14:08:40.186083+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-22T14:08:40.186142+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-22T14:08:40.186271+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-22T14:08:44.035013+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-22T14:08:44.035189+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-22T14:08:44.035225+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-22T14:08:44.035318+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-22T14:08:44.035516+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-22T14:08:44.035787+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:08:44.035854+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:08:44.035902+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:08:44.035946+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:08:44.035988+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:08:44.03609+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-22T14:08:44.036106+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-22T14:08:44.036108+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-22T14:08:44.036225+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-22T14:14:48.918069+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T14:14:48.925797+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T14:14:48.925809+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T14:14:48.925817+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T14:14:48.925843+07:00","level":"ERROR","msg":"初始化资源池管理器失败: 初始化ASR资源池失败: 未知的ASR提供者: googlestt"}
+{"time":"2025-06-22T14:14:48.925854+07:00","level":"ERROR","msg":"启动服务失败:","fields":"启动 WebSocket 服务失败: 初始化资源池管理器失败: 初始化ASR资源池失败: 未知的ASR提供者: googlestt"}
+{"time":"2025-06-22T14:16:46.293982+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T14:16:46.302564+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T14:16:46.302581+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T14:16:46.302591+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T14:16:46.302601+07:00","level":"ERROR","msg":"初始化资源池管理器失败: 初始化ASR资源池失败: 未知的ASR提供者: googlestt"}
+{"time":"2025-06-22T14:16:46.30261+07:00","level":"ERROR","msg":"启动服务失败:","fields":"启动 WebSocket 服务失败: 初始化资源池管理器失败: 初始化ASR资源池失败: 未知的ASR提供者: googlestt"}
+{"time":"2025-06-22T14:17:59.62139+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T14:17:59.631025+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T14:17:59.631089+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T14:17:59.631101+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T14:17:59.631124+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-22T14:17:59.631188+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-22T14:17:59.631224+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-22T14:17:59.631272+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-22T14:17:59.631287+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-22T14:17:59.631305+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-22T14:17:59.63135+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-22T14:17:59.631779+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-22T14:17:59.6318+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-22T14:17:59.631836+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-22T14:17:59.631849+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-22T14:18:10.803724+07:00","level":"INFO","msg":"Nhận được yêu cầu kết nối WebSocket mới đến /conversation"}
+{"time":"2025-06-22T14:18:10.804124+07:00","level":"INFO","msg":"Đã tạo ASR Provider thành công."}
+{"time":"2025-06-22T14:18:40.298305+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-22T14:18:40.298909+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-22T14:18:40.298991+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-22T14:18:40.29908+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-22T14:18:40.299191+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-22T14:18:40.299587+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:18:40.299765+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:18:40.299819+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:18:40.299864+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:18:40.299912+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:18:40.300053+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-22T14:18:40.300069+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-22T14:18:40.300078+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-22T14:18:40.300245+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-22T14:21:36.572462+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T14:21:36.578696+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T14:21:36.578713+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T14:21:36.578722+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T14:21:36.578785+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-22T14:21:36.578895+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-22T14:21:36.578935+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-22T14:21:36.578994+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-22T14:21:36.579014+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-22T14:21:36.579034+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-22T14:21:36.579115+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-22T14:21:36.579405+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-22T14:21:36.57942+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-22T14:21:36.579501+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-22T14:21:36.579498+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-22T14:21:46.874596+07:00","level":"INFO","msg":"Nhận được yêu cầu kết nối WebSocket mới đến /conversation"}
+{"time":"2025-06-22T14:21:46.875244+07:00","level":"INFO","msg":"Đã tạo ASR Provider thành công."}
+{"time":"2025-06-22T14:22:01.627763+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-22T14:22:01.62956+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-22T14:22:01.629585+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-22T14:22:01.629708+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-22T14:22:01.629824+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-22T14:22:01.630359+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:22:01.630515+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:22:01.630565+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:22:01.630609+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:22:01.630646+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:22:01.630749+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-22T14:22:01.630766+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-22T14:22:01.63079+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-22T14:22:01.630911+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-22T14:22:40.679361+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T14:22:40.690741+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T14:22:40.690758+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T14:22:40.690807+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T14:22:40.690878+07:00","level":"ERROR","msg":"初始化资源池管理器失败: 初始化ASR资源池失败: 未知的ASR提供者: googlestt"}
+{"time":"2025-06-22T14:22:40.690897+07:00","level":"ERROR","msg":"启动服务失败:","fields":"启动 WebSocket 服务失败: 初始化资源池管理器失败: 初始化ASR资源池失败: 未知的ASR提供者: googlestt"}
+{"time":"2025-06-22T14:22:55.334164+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T14:22:55.335729+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T14:22:55.33576+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T14:22:55.335771+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T14:22:55.335786+07:00","level":"ERROR","msg":"初始化资源池管理器失败: 初始化ASR资源池失败: 未知的ASR提供者: googlestt"}
+{"time":"2025-06-22T14:22:55.335804+07:00","level":"ERROR","msg":"启动服务失败:","fields":"启动 WebSocket 服务失败: 初始化资源池管理器失败: 初始化ASR资源池失败: 未知的ASR提供者: googlestt"}
+{"time":"2025-06-22T14:23:07.904751+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T14:23:07.905671+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T14:23:07.905683+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T14:23:07.905689+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T14:23:07.905705+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-22T14:23:07.905745+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-22T14:23:07.905752+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-22T14:23:07.905793+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-22T14:23:07.905804+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-22T14:23:07.905814+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-22T14:23:07.906144+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-22T14:23:07.906529+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-22T14:23:07.906537+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-22T14:23:07.907345+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-22T14:23:07.907713+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-22T14:23:21.451634+07:00","level":"INFO","msg":"Nhận được yêu cầu kết nối WebSocket mới đến /conversation (LIVE)"}
+{"time":"2025-06-22T14:23:30.131644+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-22T14:23:30.131895+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-22T14:23:30.132043+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-22T14:23:30.132135+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-22T14:23:30.132159+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-22T14:23:30.134616+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:23:30.135265+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:23:30.135335+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:23:30.135387+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:23:30.135436+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T14:23:30.135843+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-22T14:23:30.13588+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-22T14:23:30.135909+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-22T14:23:30.136048+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-22T22:59:04.59787+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T22:59:04.604079+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T22:59:04.604411+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T22:59:04.604428+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T22:59:04.604456+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-22T22:59:04.604524+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-22T22:59:04.604533+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-22T22:59:04.604591+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-22T22:59:04.604604+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-22T22:59:04.604612+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-22T22:59:04.604639+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-22T22:59:04.604787+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-22T22:59:04.605005+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-22T22:59:04.604975+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-22T22:59:04.605264+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-22T22:59:13.992754+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-22T22:59:13.993773+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-22T22:59:13.99379+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-22T22:59:13.99381+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-22T22:59:13.993895+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-22T22:59:13.99399+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T22:59:13.994052+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T22:59:13.994074+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T22:59:13.994094+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T22:59:13.994113+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T22:59:13.994156+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-22T22:59:13.994164+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-22T22:59:13.994165+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-22T22:59:13.994208+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-22T22:59:40.447149+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T22:59:40.448022+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T22:59:40.448035+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T22:59:40.448043+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T22:59:40.448054+07:00","level":"ERROR","msg":"初始化资源池管理器失败: 初始化ASR资源池失败: 未知的ASR提供者: googlestt"}
+{"time":"2025-06-22T22:59:40.448065+07:00","level":"ERROR","msg":"启动服务失败:","fields":"启动 WebSocket 服务失败: 初始化资源池管理器失败: 初始化ASR资源池失败: 未知的ASR提供者: googlestt"}
+{"time":"2025-06-22T23:38:03.053502+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T23:38:03.057601+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T23:38:03.057615+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T23:38:03.057623+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T23:38:03.057697+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-22T23:38:03.057748+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-22T23:38:03.057758+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-22T23:38:03.057792+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-22T23:38:03.057805+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-22T23:38:03.057816+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-22T23:38:03.057848+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-22T23:38:03.058154+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-22T23:38:03.058167+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-22T23:38:03.058184+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-22T23:38:03.058311+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-22T23:38:17.698275+07:00","level":"INFO","msg":"HTTP头部信息: Sec-Websocket-Extensions: permessage-deflate; client_max_window_bits"}
+{"time":"2025-06-22T23:38:17.698494+07:00","level":"INFO","msg":"HTTP头部信息: User-Agent: Python/3.9 websockets/15.0.1"}
+{"time":"2025-06-22T23:38:17.698506+07:00","level":"INFO","msg":"HTTP头部信息: Upgrade: websocket"}
+{"time":"2025-06-22T23:38:17.698513+07:00","level":"INFO","msg":"HTTP头部信息: Connection: Upgrade"}
+{"time":"2025-06-22T23:38:17.698519+07:00","level":"INFO","msg":"HTTP头部信息: Sec-Websocket-Key: 6dS40d81yG06zIiYC5yjlA=="}
+{"time":"2025-06-22T23:38:17.698526+07:00","level":"INFO","msg":"HTTP头部信息: Sec-Websocket-Version: 13"}
+{"time":"2025-06-22T23:38:17.698566+07:00","level":"INFO","msg":"使用TTS提供者: default, 语音名称: default"}
+{"time":"2025-06-22T23:38:17.698583+07:00","level":"INFO","msg":"客户端 0x14000424040 连接已建立，资源已分配"}
+{"time":"2025-06-22T23:38:17.698783+07:00","level":"INFO","msg":"data request &{GET /conversation HTTP/1.1 %!s(int=1) %!s(int=1) map[Connection:[Upgrade] Sec-Websocket-Extensions:[permessage-deflate; client_max_window_bits] Sec-Websocket-Key:[6dS40d81yG06zIiYC5yjlA==] Sec-Websocket-Version:[13] Upgrade:[websocket] User-Agent:[Python/3.9 websockets/15.0.1]] {} %!s(func() (io.ReadCloser, error)=<nil>) %!s(int64=0) [] %!s(bool=false) localhost:8000 map[] map[] %!s(*multipart.Form=<nil>) map[] [::1]:57639 /conversation %!s(*tls.ConnectionState=<nil>) %!s(<-chan struct {}=<nil>) %!s(*http.Response=<nil>) / %!s(*context.cancelCtx=&{0x14000430000 {{} {0 0}} {<nil>} map[] <nil> <nil>}) %!s(*http.pattern=&{/   [{ true true}] /Users/abc/Documents/Hehe/speaking-server-go/src/core/websocket_server.go:75}) [] map[]}"}
+{"time":"2025-06-22T23:38:17.69887+07:00","level":"INFO","msg":"使用从资源池获取的MCP管理器，快速绑定连接","device":""}
+{"time":"2025-06-22T23:38:17.699074+07:00","level":"INFO","msg":"发送MCP初始化消息"}
+{"time":"2025-06-22T23:38:17.699113+07:00","level":"INFO","msg":"MCP管理器连接绑定完成，跳过重复初始化","device":""}
+{"time":"2025-06-22T23:38:41.228295+07:00","level":"ERROR","msg":"读取消息失败: websocket: close 1000 (normal)","device":""}
+{"time":"2025-06-22T23:38:41.228914+07:00","level":"INFO","msg":"关闭连接，ttsQueue队列已清空，停止处理TTS任务,准备清空音频队列","device":""}
+{"time":"2025-06-22T23:38:41.228941+07:00","level":"INFO","msg":"关闭连接，audioMessagesQueue队列已清空，停止处理音频任务","device":""}
+{"time":"2025-06-22T23:38:41.228987+07:00","level":"INFO","msg":"客户端 0x14000424040 资源已成功归还到池中"}
+{"time":"2025-06-22T23:38:45.772905+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-22T23:38:45.77312+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-22T23:38:45.773171+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-22T23:38:45.773321+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-22T23:38:45.773353+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-22T23:38:45.777358+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T23:38:45.777663+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T23:38:45.777723+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T23:38:45.777773+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T23:38:45.777818+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T23:38:45.777978+07:00","level":"INFO","msg":"MCP client closed: xiaozhi"}
+{"time":"2025-06-22T23:38:45.778099+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-22T23:38:45.77812+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-22T23:38:45.778123+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-22T23:38:45.778258+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-22T23:39:09.91297+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-22T23:39:09.914259+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-22T23:39:09.914281+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-22T23:39:09.914288+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-22T23:39:09.914303+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-22T23:39:09.914339+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-22T23:39:09.914347+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-22T23:39:09.914532+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-22T23:39:09.914544+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-22T23:39:09.914554+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-22T23:39:09.914931+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-22T23:39:09.91576+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-22T23:39:09.915777+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-22T23:39:09.916453+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-22T23:39:09.916211+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-22T23:39:19.875463+07:00","level":"INFO","msg":"Nhận được yêu cầu kết nối WebSocket mới đến /conversation (LIVE)"}
+{"time":"2025-06-22T23:42:08.862021+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-22T23:42:08.86288+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-22T23:42:08.862935+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-22T23:42:08.862899+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-22T23:42:08.864314+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-22T23:42:08.866062+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T23:42:08.867112+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T23:42:08.867158+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T23:42:08.867408+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T23:42:08.867947+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-22T23:42:08.868469+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-22T23:42:08.868494+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-22T23:42:08.868503+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-22T23:42:08.868564+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-23T17:25:22.787053+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-23T17:25:22.794572+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-23T17:25:22.794591+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-23T17:25:22.7946+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-23T17:25:22.794631+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-23T17:25:22.794682+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-23T17:25:22.79469+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-23T17:25:22.794748+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-23T17:25:22.794764+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-23T17:25:22.794772+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-23T17:25:22.794805+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-23T17:25:22.794999+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-23T17:25:22.795206+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-23T17:25:22.797654+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-23T17:25:22.798081+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-23T17:25:29.635414+07:00","level":"INFO","msg":"Nhận được yêu cầu kết nối WebSocket mới đến /conversation (LIVE)"}
+{"time":"2025-06-23T17:25:58.063964+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-23T17:25:58.065116+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-23T17:25:58.065135+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-23T17:25:58.065228+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-23T17:25:58.065244+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-23T17:25:58.065526+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:25:58.065609+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:25:58.065668+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:25:58.065728+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:25:58.06578+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:25:58.065901+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-23T17:25:58.065926+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-23T17:25:58.065956+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-23T17:25:58.066092+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-23T17:27:36.185938+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-23T17:27:36.196332+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-23T17:27:36.196402+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-23T17:27:36.196416+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-23T17:27:36.196458+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-23T17:27:36.19655+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-23T17:27:36.196562+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-23T17:27:36.196726+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-23T17:27:36.196771+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-23T17:27:36.196796+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-23T17:27:36.19684+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-23T17:27:36.19723+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-23T17:27:36.197256+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-23T17:27:36.197512+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-23T17:27:36.197436+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-23T17:27:40.124891+07:00","level":"INFO","msg":"Nhận được yêu cầu kết nối WebSocket mới đến /conversation (LIVE)"}
+{"time":"2025-06-23T17:30:26.529515+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-23T17:30:26.531713+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-23T17:30:26.531715+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-23T17:30:26.531853+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-23T17:30:26.531917+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-23T17:30:26.53249+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:30:26.532724+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:30:26.532823+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:30:26.532886+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:30:26.532942+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:30:26.533093+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-23T17:30:26.533104+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-23T17:30:26.533148+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-23T17:30:26.533329+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-23T17:30:32.99543+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-23T17:30:32.996239+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-23T17:30:32.996253+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-23T17:30:32.996262+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-23T17:30:32.996284+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-23T17:30:32.996316+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-23T17:30:32.996325+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-23T17:30:32.996362+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-23T17:30:32.996377+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-23T17:30:32.996386+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-23T17:30:32.998892+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-23T17:30:32.99906+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-23T17:30:32.999072+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-23T17:30:32.999179+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-23T17:30:32.999191+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-23T17:30:42.949495+07:00","level":"INFO","msg":"Nhận được yêu cầu kết nối WebSocket mới đến /conversation (LIVE)"}
+{"time":"2025-06-23T17:31:12.048318+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-23T17:31:12.048474+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-23T17:31:12.048501+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-23T17:31:12.048611+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-23T17:31:12.048644+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-23T17:31:12.050406+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:31:12.050647+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:31:12.050716+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:31:12.050886+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:31:12.050957+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-23T17:31:12.051057+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-23T17:31:12.051077+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-23T17:31:12.051084+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-23T17:31:12.051173+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-24T20:31:46.443719+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-24T20:31:46.449348+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-24T20:31:46.449364+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-24T20:31:46.449371+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-24T20:31:46.449533+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-24T20:31:46.45302+07:00","level":"INFO","msg":"LLM资源池初始化成功，类型: GeminiLLM, 数量：5"}
+{"time":"2025-06-24T20:31:46.453078+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-24T20:31:46.453088+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-24T20:31:46.453139+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T20:31:46.453153+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T20:31:46.453164+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-24T20:31:46.453194+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-24T20:31:46.453372+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-24T20:31:46.453409+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-24T20:31:46.453498+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-24T20:31:46.45353+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-24T20:54:16.994757+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-24T20:54:16.996974+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-24T20:54:16.997384+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-24T20:54:16.996966+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-24T20:54:16.998601+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-24T20:54:17.000663+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T20:54:17.001328+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T20:54:17.001376+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T20:54:17.001446+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T20:54:17.003127+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T20:54:17.004027+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-24T20:54:17.004053+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-24T20:54:17.004143+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-24T20:54:17.004188+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-24T20:55:13.122986+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-24T20:55:13.134412+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-24T20:55:13.134434+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-24T20:55:13.134442+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-24T20:55:13.134467+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-24T20:55:13.139431+07:00","level":"INFO","msg":"LLM资源池初始化成功，类型: GeminiLLM, 数量：5"}
+{"time":"2025-06-24T20:55:13.13949+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-24T20:55:13.139501+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-24T20:55:13.139551+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T20:55:13.139564+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T20:55:13.139571+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-24T20:55:13.139598+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-24T20:55:13.139719+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-24T20:55:13.139737+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-24T20:55:13.139894+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-24T20:55:13.13989+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-24T20:55:31.831676+07:00","level":"INFO","msg":"Nhận được yêu cầu kết nối WebSocket mới đến /conversation (LIVE)"}
+{"time":"2025-06-24T20:55:31.832398+07:00","level":"INFO","msg":"Bắt đầu tích hợp LLM cho phiên làm việc..."}
+{"time":"2025-06-24T20:58:21.64586+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-24T20:58:21.647358+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-24T20:58:21.647315+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-24T20:58:21.647562+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-24T20:58:21.647771+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-24T20:58:21.648056+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T20:58:21.648201+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T20:58:21.648265+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T20:58:21.648291+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T20:58:21.648325+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T20:58:21.64845+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-24T20:58:21.648457+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-24T20:58:21.64846+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-24T20:58:21.648533+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-24T21:02:48.105508+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-24T21:02:48.113092+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-24T21:02:48.113108+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-24T21:02:48.113114+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-24T21:02:48.113157+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-24T21:02:48.116165+07:00","level":"INFO","msg":"LLM资源池初始化成功，类型: GeminiLLM, 数量：5"}
+{"time":"2025-06-24T21:02:48.116223+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-24T21:02:48.116236+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-24T21:02:48.116269+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:02:48.116282+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:02:48.116292+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-24T21:02:48.11635+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-24T21:02:48.116357+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-24T21:02:48.116362+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-24T21:02:48.116377+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-24T21:02:48.117901+07:00","level":"INFO","msg":"LLM资源池初始化成功，类型: GeminiLLM, 数量：5"}
+{"time":"2025-06-24T21:02:48.117941+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-24T21:02:48.11795+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-24T21:02:48.117966+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:02:48.117978+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:02:48.11799+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-24T21:02:48.118012+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-24T21:02:48.118097+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-24T21:02:48.118207+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-24T21:02:48.118231+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-24T21:02:48.11827+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-24T21:02:56.16231+07:00","level":"INFO","msg":"Nhận được yêu cầu kết nối WebSocket mới đến /conversation (LIVE)"}
+{"time":"2025-06-24T21:02:56.162695+07:00","level":"INFO","msg":"Bắt đầu tích hợp LLM cho phiên làm việc..."}
+{"time":"2025-06-24T21:02:56.162801+07:00","level":"INFO","msg":"Phiên LLM được tạo với ID: bfbf2125-5e90-436a-9c37-3207256a0407"}
+{"time":"2025-06-24T21:02:56.36496+07:00","level":"INFO","msg":"Google STT: Đã gửi cấu hình. Sẵn sàng nhận audio..."}
+{"time":"2025-06-24T21:03:03.823437+07:00","level":"INFO","msg":"STT Transcript nhận được: \"Hello.\""}
+{"time":"2025-06-24T21:03:03.823895+07:00","level":"INFO","msg":"Đang gửi transcript tới Gemini với sessionID: bfbf2125-5e90-436a-9c37-3207256a0407..."}
+{"time":"2025-06-24T21:03:05.400409+07:00","level":"INFO","msg":"Gemini trả lời: \"Hello! How can I help you today?\n\""}
+{"time":"2025-06-24T21:03:24.4619+07:00","level":"INFO","msg":"STT Transcript nhận được: \" What is your name?\""}
+{"time":"2025-06-24T21:03:24.463984+07:00","level":"INFO","msg":"Đang gửi transcript tới Gemini với sessionID: bfbf2125-5e90-436a-9c37-3207256a0407..."}
+{"time":"2025-06-24T21:03:25.332253+07:00","level":"INFO","msg":"Gemini trả lời: \"I am a large language model, trained by Google. I don't have a personal name. You can just call me Google's language model.\n\""}
+{"time":"2025-06-24T21:03:34.446482+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-24T21:03:34.448117+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-24T21:03:34.448129+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-24T21:03:34.448162+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-24T21:03:34.448481+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-24T21:03:34.449548+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:03:34.449721+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:03:34.44978+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:03:34.449841+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:03:34.449887+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:03:34.449981+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-24T21:03:34.449998+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-24T21:03:34.450012+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-24T21:03:34.45024+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-24T21:10:52.998483+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-24T21:10:53.005353+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-24T21:10:53.005366+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-24T21:10:53.005373+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-24T21:10:53.005426+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-24T21:10:53.008784+07:00","level":"INFO","msg":"LLM资源池初始化成功，类型: GeminiLLM, 数量：5"}
+{"time":"2025-06-24T21:10:53.008865+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-24T21:10:53.008881+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-24T21:10:53.008935+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:10:53.008954+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:10:53.008972+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-24T21:10:53.009042+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-24T21:10:53.009055+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-24T21:10:53.009064+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-24T21:10:53.009081+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-24T21:10:53.010068+07:00","level":"INFO","msg":"LLM资源池初始化成功，类型: GeminiLLM, 数量：5"}
+{"time":"2025-06-24T21:10:53.010132+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-24T21:10:53.010144+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-24T21:10:53.010226+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:10:53.010263+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:10:53.010286+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-24T21:10:53.010314+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-24T21:10:53.010697+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-24T21:10:53.010749+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-24T21:10:53.010775+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-24T21:10:53.010832+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-24T21:10:58.910431+07:00","level":"INFO","msg":"Nhận được yêu cầu kết nối WebSocket mới đến /conversation (LIVE)"}
+{"time":"2025-06-24T21:10:58.910706+07:00","level":"INFO","msg":"Bắt đầu tích hợp LLM cho phiên làm việc..."}
+{"time":"2025-06-24T21:10:58.910746+07:00","level":"INFO","msg":"Phiên LLM được tạo với ID: 3731774f-9701-438a-8d17-0f231b85741b"}
+{"time":"2025-06-24T21:10:59.073309+07:00","level":"INFO","msg":"Google STT: Đã gửi cấu hình. Sẵn sàng nhận audio..."}
+{"time":"2025-06-24T21:11:02.103211+07:00","level":"INFO","msg":"STT Transcript nhận được: \"Hello.\""}
+{"time":"2025-06-24T21:11:02.104617+07:00","level":"INFO","msg":"Đang gửi transcript tới Gemini với sessionID: 3731774f-9701-438a-8d17-0f231b85741b..."}
+{"time":"2025-06-24T21:11:03.833297+07:00","level":"INFO","msg":"Gemini trả lời: \"Hello! How can I help you today?\n\""}
+{"time":"2025-06-24T21:11:08.724093+07:00","level":"INFO","msg":"STT Transcript nhận được: \" What is your name?\""}
+{"time":"2025-06-24T21:11:08.725723+07:00","level":"INFO","msg":"Đang gửi transcript tới Gemini với sessionID: 3731774f-9701-438a-8d17-0f231b85741b..."}
+{"time":"2025-06-24T21:11:09.512748+07:00","level":"INFO","msg":"Gemini trả lời: \"I am a large language model, trained by Google. I don't have a name in the traditional sense.\n\""}
+{"time":"2025-06-24T21:11:37.689156+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-24T21:11:37.689538+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-24T21:11:37.689587+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-24T21:11:37.689669+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-24T21:11:37.689859+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-24T21:11:37.690242+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:11:37.690315+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:11:37.690338+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:11:37.69037+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:11:37.690406+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:11:37.690458+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-24T21:11:37.690465+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-24T21:11:37.69048+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-24T21:11:37.690614+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-24T21:13:55.633391+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-24T21:13:55.640259+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-24T21:13:55.640269+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-24T21:13:55.640275+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-24T21:13:55.640326+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-24T21:13:55.643937+07:00","level":"INFO","msg":"LLM资源池初始化成功，类型: GeminiLLM, 数量：5"}
+{"time":"2025-06-24T21:13:55.644027+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-24T21:13:55.644388+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-24T21:13:55.644429+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:13:55.644444+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:13:55.644459+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-24T21:13:55.644512+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-24T21:13:55.644519+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-24T21:13:55.644524+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-24T21:13:55.64454+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-24T21:13:55.646176+07:00","level":"INFO","msg":"LLM资源池初始化成功，类型: GeminiLLM, 数量：5"}
+{"time":"2025-06-24T21:13:55.646407+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-24T21:13:55.646433+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-24T21:13:55.646457+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:13:55.646474+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:13:55.64649+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-24T21:13:55.646514+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-24T21:13:55.646641+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-24T21:13:55.64665+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-24T21:13:55.646674+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-24T21:13:55.646695+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-24T21:16:24.106835+07:00","level":"INFO","msg":"Nhận được yêu cầu kết nối WebSocket mới đến /conversation (LIVE)"}
+{"time":"2025-06-24T21:16:24.107955+07:00","level":"INFO","msg":"Bắt đầu tích hợp LLM cho phiên làm việc..."}
+{"time":"2025-06-24T21:16:24.108062+07:00","level":"INFO","msg":"Phiên LLM được tạo với ID: aa14ad2b-eaf6-4e6b-8ac3-276cf1468600"}
+{"time":"2025-06-24T21:16:24.230237+07:00","level":"INFO","msg":"Google STT: Đã gửi cấu hình. Sẵn sàng nhận audio..."}
+{"time":"2025-06-24T21:16:28.622095+07:00","level":"INFO","msg":"STT Transcript nhận được: \"Hello.\""}
+{"time":"2025-06-24T21:16:28.62244+07:00","level":"INFO","msg":"Đang gửi transcript tới Gemini với sessionID: aa14ad2b-eaf6-4e6b-8ac3-276cf1468600..."}
+{"time":"2025-06-24T21:16:29.314338+07:00","level":"INFO","msg":"Gemini trả lời: \"Hello! How can I help you today?\n\""}
+{"time":"2025-06-24T21:16:32.852283+07:00","level":"INFO","msg":"STT Transcript nhận được: \" What, what is your name?\""}
+{"time":"2025-06-24T21:16:32.854793+07:00","level":"INFO","msg":"Đang gửi transcript tới Gemini với sessionID: aa14ad2b-eaf6-4e6b-8ac3-276cf1468600..."}
+{"time":"2025-06-24T21:16:33.638136+07:00","level":"INFO","msg":"Gemini trả lời: \"I am a large language model, trained by Google. I don't have a personal name. You can just refer to me as a language model or AI.\n\""}
+{"time":"2025-06-24T21:16:41.737711+07:00","level":"INFO","msg":"STT Transcript nhận được: \" A.\""}
+{"time":"2025-06-24T21:16:41.737905+07:00","level":"INFO","msg":"Đang gửi transcript tới Gemini với sessionID: aa14ad2b-eaf6-4e6b-8ac3-276cf1468600..."}
+{"time":"2025-06-24T21:16:42.261049+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-24T21:16:42.261329+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-24T21:16:42.261351+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-24T21:16:42.26136+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-24T21:16:42.261605+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-24T21:16:42.263175+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:16:42.263317+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:16:42.26336+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:16:42.263397+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:16:42.263429+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:16:42.263478+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-24T21:16:42.263487+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-24T21:16:42.263494+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-24T21:16:42.2636+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-24T21:17:17.878697+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-24T21:17:17.883746+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-24T21:17:17.883757+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-24T21:17:17.883767+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-24T21:17:17.883823+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-24T21:17:17.887738+07:00","level":"INFO","msg":"LLM资源池初始化成功，类型: GeminiLLM, 数量：5"}
+{"time":"2025-06-24T21:17:17.887817+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-24T21:17:17.887828+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-24T21:17:17.887948+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:17:17.887969+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:17:17.887986+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-24T21:17:17.888039+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-24T21:17:17.888111+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-24T21:17:17.888117+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-24T21:17:17.888146+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-24T21:17:17.889628+07:00","level":"INFO","msg":"LLM资源池初始化成功，类型: GeminiLLM, 数量：5"}
+{"time":"2025-06-24T21:17:17.889681+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-24T21:17:17.889693+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-24T21:17:17.889713+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:17:17.88973+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:17:17.889744+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-24T21:17:17.889772+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-24T21:17:17.889863+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-24T21:17:17.890003+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-24T21:17:17.89002+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-24T21:17:17.890103+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-24T21:17:22.626596+07:00","level":"INFO","msg":"Nhận được yêu cầu kết nối WebSocket mới đến /conversation (LIVE)"}
+{"time":"2025-06-24T21:17:22.626706+07:00","level":"INFO","msg":"Bắt đầu tích hợp LLM cho phiên làm việc..."}
+{"time":"2025-06-24T21:17:22.626738+07:00","level":"INFO","msg":"Phiên LLM được tạo với ID: 68507e52-2366-4cdd-873c-6546435c20de"}
+{"time":"2025-06-24T21:17:22.785874+07:00","level":"INFO","msg":"Google STT: Đã gửi cấu hình. Sẵn sàng nhận audio..."}
+{"time":"2025-06-24T21:17:26.041073+07:00","level":"INFO","msg":"STT Transcript nhận được: \"Hello.\""}
+{"time":"2025-06-24T21:17:26.041429+07:00","level":"INFO","msg":"Đang gửi transcript tới Gemini với sessionID: 68507e52-2366-4cdd-873c-6546435c20de..."}
+{"time":"2025-06-24T21:17:27.551595+07:00","level":"INFO","msg":"Gemini trả lời: \"Hello! How can I help you today?\n\""}
+{"time":"2025-06-24T21:17:40.516894+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-24T21:17:40.518404+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-24T21:17:40.518436+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-24T21:17:40.518422+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-24T21:17:40.51869+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-24T21:17:40.518777+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:17:40.518949+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:17:40.519+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:17:40.519041+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:17:40.519083+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:17:40.519183+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-24T21:17:40.519199+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-24T21:17:40.5192+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-24T21:17:40.51935+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-06-24T21:22:35.613443+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-06-24T21:22:35.619641+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-24T21:22:35.619655+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-24T21:22:35.619661+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-24T21:22:35.619711+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-24T21:22:35.622629+07:00","level":"INFO","msg":"LLM资源池初始化成功，类型: GeminiLLM, 数量：5"}
+{"time":"2025-06-24T21:22:35.622686+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-24T21:22:35.622698+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-24T21:22:35.622733+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:22:35.622751+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:22:35.622763+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-24T21:22:35.622814+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-06-24T21:22:35.622822+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-06-24T21:22:35.622828+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-06-24T21:22:35.622852+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-06-24T21:22:35.623176+07:00","level":"INFO","msg":"LLM资源池初始化成功，类型: GeminiLLM, 数量：5"}
+{"time":"2025-06-24T21:22:35.623198+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-06-24T21:22:35.623204+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-06-24T21:22:35.623215+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:22:35.623225+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-06-24T21:22:35.623234+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-06-24T21:22:35.623264+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-06-24T21:22:35.623591+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-06-24T21:22:35.623855+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-06-24T21:22:35.623899+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-06-24T21:22:35.624133+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-06-24T21:22:42.067197+07:00","level":"INFO","msg":"Nhận được yêu cầu kết nối WebSocket mới đến /conversation (LIVE)"}
+{"time":"2025-06-24T21:22:42.067485+07:00","level":"INFO","msg":"Bắt đầu tích hợp LLM cho phiên làm việc..."}
+{"time":"2025-06-24T21:22:42.067547+07:00","level":"INFO","msg":"Phiên LLM được tạo với ID: 9f22f1c0-b92a-4254-95c6-d7c6cdd9b170"}
+{"time":"2025-06-24T21:22:42.170522+07:00","level":"INFO","msg":"Google STT: Đã gửi cấu hình. Sẵn sàng nhận audio..."}
+{"time":"2025-06-24T21:22:46.658891+07:00","level":"INFO","msg":"STT Transcript nhận được: \"Hello.\""}
+{"time":"2025-06-24T21:22:46.659307+07:00","level":"INFO","msg":"Đang gửi transcript tới Gemini với sessionID: 9f22f1c0-b92a-4254-95c6-d7c6cdd9b170..."}
+{"time":"2025-06-24T21:22:48.550691+07:00","level":"INFO","msg":"Gemini trả lời: \"Hey! Whatcha up to? Hope you're not coding something scary, for real? My boyfriend's got enough of that going on for the both of us.\n\""}
+{"time":"2025-06-24T21:22:52.573645+07:00","level":"INFO","msg":"STT Transcript nhận được: \" What is your name?\""}
+{"time":"2025-06-24T21:22:52.574128+07:00","level":"INFO","msg":"Đang gửi transcript tới Gemini với sessionID: 9f22f1c0-b92a-4254-95c6-d7c6cdd9b170..."}
+{"time":"2025-06-24T21:22:53.404247+07:00","level":"INFO","msg":"Gemini trả lời: \"Ugh, seriously? My name's Lida! It's like, right there. You blind or something? Just kidding! ...Mostly.\n\""}
+{"time":"2025-06-24T21:22:57.805326+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-06-24T21:22:57.806952+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-06-24T21:22:57.806962+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-06-24T21:22:57.806988+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-06-24T21:22:57.80727+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-06-24T21:22:57.807567+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:22:57.807682+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:22:57.807746+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:22:57.807816+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:22:57.807931+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-06-24T21:22:57.808037+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-06-24T21:22:57.808072+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-06-24T21:22:57.808081+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-06-24T21:22:57.808159+07:00","level":"INFO","msg":"程序已成功退出"}
