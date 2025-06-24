@@ -123,3 +123,6 @@ type LLMProvider interface {
 	Response(ctx context.Context, sessionID string, messages []Message) (<-chan string, error)
 	ResponseWithFunctions(ctx context.Context, sessionID string, messages []Message, tools []openai.Tool) (<-chan Response, error)
 }
+type ChatSession interface {
+	SendMessage(ctx context.Context, text string) (string, error)
+}
