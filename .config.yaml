@@ -125,9 +125,9 @@ TTS:
 LLM:
   GeminiLLM:
     type: gemini
-    api_key: "YOUR_GEMINI_API_KEY"
+    api_key: "AIzaSyDGsAGbcLxzenHhx0ZaclbYjuAxiQX20Kg"
     # Tên model LLM của Gemini, ví dụ
-    model_name: "gemini-1.5-pro-latest"
+    model_name: "gemini-2.0-flash"
 
   ChatGLMLLM:
     # 定义LLM API类型

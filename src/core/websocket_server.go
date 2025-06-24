@@ -247,7 +247,12 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 		log.Printf("Lỗi tạo speech client: %v", err)
 		return
 	}
-	defer client.Close()
+	defer func(client *speech.Client) {
+		err := client.Close()
+		if err != nil {
+
+		}
+	}(client)
 
 	stream, err := client.StreamingRecognize(ctx)
 	if err != nil {
@@ -260,10 +265,13 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 		StreamingRequest: &speechpb.StreamingRecognizeRequest_StreamingConfig{
 			StreamingConfig: &speechpb.StreamingRecognitionConfig{
 				Config: &speechpb.RecognitionConfig{
-					Encoding:          speechpb.RecognitionConfig_LINEAR16,
-					SampleRateHertz:   16000, // Tần số tối ưu cho nhận dạng giọng nói
-					LanguageCode:      languageCode,
-					AudioChannelCount: 1,
+					Encoding:                   speechpb.RecognitionConfig_LINEAR16,
+					SampleRateHertz:            16000, // Tần số tối ưu cho nhận dạng giọng nói
+					LanguageCode:               languageCode,
+					AudioChannelCount:          1,
+					AlternativeLanguageCodes:   []string{"vi-VN"},
+					Model:                      "telephony",
+					EnableAutomaticPunctuation: true,
 				},
 				InterimResults:  false, // <-- Yêu cầu kết quả tạm thời
 				SingleUtterance: false, // <-- Xử lý luồng nói dài, không tự ngắt
@@ -349,10 +357,12 @@ func (ws *WebSocketServer) processUtterance(conn connections.Conn, audioData []b
 	// Sử dụng API Recognize non-streaming vì chúng ta đã có toàn bộ audio của lượt nói
 	resp, err := client.Recognize(ctx, &speechpb.RecognizeRequest{
 		Config: &speechpb.RecognitionConfig{
-			Encoding:          speechpb.RecognitionConfig_LINEAR16,
-			SampleRateHertz:   sampleRate,
-			LanguageCode:      languageCode,
-			AudioChannelCount: 1,
+			Encoding:                 speechpb.RecognitionConfig_LINEAR16,
+			SampleRateHertz:          sampleRate,
+			LanguageCode:             languageCode,
+			AlternativeLanguageCodes: []string{"vi-VN"},
+			Model:                    "telephony",
+			AudioChannelCount:        1,
 		},
 		Audio: &speechpb.RecognitionAudio{
 			AudioSource: &speechpb.RecognitionAudio_Content{Content: audioData},
