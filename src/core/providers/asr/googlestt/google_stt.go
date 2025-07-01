@@ -15,19 +15,17 @@ import (
 	"xiaozhi-server-go/src/core/utils"
 )
 
-// --- Đăng ký Provider với hệ thống ---
 func init() {
-	// "GoogleSTT" phải khớp với tên bạn dùng trong file .config.yaml
 	asr.Register("GoogleSTT", NewProvider)
 }
 
 // GoogleSTT struct bây giờ sẽ kế thừa BaseProvider
 type GoogleSTT struct {
-	*asr.BaseProvider // Kế thừa các thuộc tính và phương thức chung
-	credsFile         string
-	languageCode      string
-	sampleRate        int32
-	encoding          speechpb.RecognitionConfig_AudioEncoding
+	*asr.BaseProvider
+	credsFile    string
+	languageCode string
+	sampleRate   int32
+	encoding     speechpb.RecognitionConfig_AudioEncoding
 }
 
 // NewProvider là hàm tạo có chữ ký khớp với yêu cầu của asr.Factory.
@@ -35,7 +33,7 @@ func NewProvider(config *asr.Config, deleteFile bool, logger *utils.Logger) (asr
 	base := asr.NewBaseProvider(config, deleteFile)
 	credsFile, _ := config.Data["credentials_file"].(string)
 	if credsFile == "" {
-		return nil, fmt.Errorf("Google STT provider yêu cầu 'credentials_file'")
+		return nil, fmt.Errorf("google STT provider yêu cầu 'credentials_file'")
 	}
 	languageCode, _ := config.Data["language_code"].(string)
 	if languageCode == "" {
@@ -59,7 +57,6 @@ func NewProvider(config *asr.Config, deleteFile bool, logger *utils.Logger) (asr
 	}, nil
 }
 
-// Stream - PHIÊN BẢN CUỐI CÙNG, ĐÃ ĐƯỢC TÁI CẤU TRÚC ĐỂ ĐẢM BẢO AN TOÀN
 func (s *GoogleSTT) Stream(audioIn <-chan []byte) (<-chan string, error) {
 	textOut := make(chan string)
 
@@ -160,8 +157,6 @@ func (s *GoogleSTT) Reset() error {
 // Transcribe HÃY CHẮC CHẮN PHƯƠNG THỨC NÀY TỒN TẠI VÀ ĐÚNG CHỮ KÝ
 func (s *GoogleSTT) Transcribe(ctx context.Context, audioData []byte) (string, error) {
 	log.Println("GoogleSTT provider: Transcribe() được gọi.")
-	// Vì chúng ta tập trung vào streaming, phương thức này sẽ không được
-	// sử dụng trong luồng chính, nên chúng ta chỉ cần trả về lỗi.
 	return "", fmt.Errorf("GoogleSTT provider không hỗ trợ phương thức Transcribe, vui lòng sử dụng Stream")
 }
 
@@ -170,17 +165,7 @@ func (s *GoogleSTT) SetListener(listener providers.AsrEventListener) {
 }
 
 func init() {
-	// THÊM DÒNG LOG NÀY VÀO ĐỂ KIỂM TRA
-	log.Println("!!! CHẨN ĐOÁN: Đang chạy init() của package googlestt và đăng ký provider 'GoogleSTT'...")
 	asr.Register("googlestt", NewProvider)
 
 	//asr.Register("GoogleSTT", NewProvider)
 }
-
-// Chú thích: Bạn có thể cần sửa đường dẫn import cho `configs`
-// nếu nó không chính xác. Dựa trên file đầu tiên bạn gửi, nó là
-// `xiaozhi-server-go/src/configs`.
-// Nếu hàm `NewProvider` cần truy cập vào config tổng (main config),
-// bạn cần tìm cách truyền nó vào, nhưng dựa vào file `asr.go` thì
-// nó chỉ nhận `asr.Config`. Logic hiện tại đã được điều chỉnh để
-// chỉ dùng `asr.Config`.

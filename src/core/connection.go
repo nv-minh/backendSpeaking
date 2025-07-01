@@ -46,6 +46,7 @@ type Connection interface {
 	GetLastActiveTime() time.Time
 	// 检查是否过期
 	IsStale(timeout time.Duration) bool
+	SetReadDeadline(t time.Time) error
 }
 
 type configGetter interface {
@@ -209,7 +210,7 @@ func NewConnectionHandler(
 	voiceName := "default"
 	if getter, ok := handler.providers.tts.(configGetter); ok {
 		ttsProvider = getter.Config().Type
-		voiceName = getter.Config().Voice
+		voiceName = getter.Config().Data["Voice"].(string)
 	}
 	logger.Info("使用TTS提供者: %s, 语音名称: %s", ttsProvider, voiceName)
 	handler.quickReplyCache = utils.NewQuickReplyCache(ttsProvider, voiceName)

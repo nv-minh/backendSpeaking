@@ -33,13 +33,13 @@ func NewProvider(config *tts.Config, deleteFile bool) (*Provider, error) {
 func (p *Provider) ToTTS(text string) (string, error) {
 	// 获取配置的声音，如果未配置则使用默认值
 	edgeTTSStartTime := time.Now()
-	voice := p.BaseProvider.Config().Voice
+	voice := p.Config().Data["voice"].(string)
 	if voice == "" {
 		voice = "zh-CN-XiaoxiaoNeural" // 默认声音
 	}
 
 	// 创建临时文件路径用于保存 edgeTTS 生成的 MP3
-	outputDir := p.BaseProvider.Config().OutputDir
+	outputDir := p.Config().Data["output_dir"].(string)
 	if outputDir == "" {
 		outputDir = os.TempDir() // Use system temp dir if not configured
 	}

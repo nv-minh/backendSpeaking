@@ -1,9 +1,10 @@
-// File: src/core/llm/gemini.go
 package llm
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"os"
 	"sync"
 	"xiaozhi-server-go/src/configs"
 	"xiaozhi-server-go/src/core/types"
@@ -23,6 +24,35 @@ type GeminiProvider struct {
 	client   *genai.Client
 	sessions map[string]*genai.ChatSession
 	mu       sync.Mutex
+}
+
+func (p *GeminiProvider) StreamChat(ctx context.Context, sessionID, message string) (<-chan string, error) {
+	outputChan := make(chan string)
+	cs := p.client.GenerativeModel("gemini-1.5-flash-latest").StartChat()
+
+	go func() {
+		defer close(outputChan)
+
+		iter := cs.SendMessageStream(ctx, genai.Text(message))
+
+		for {
+			resp, err := iter.Next()
+			if err == iterator.Done {
+				break
+			}
+			if err != nil {
+				break
+			}
+			// Lấy nội dung text từ các response parts
+			if len(resp.Candidates) > 0 && len(resp.Candidates[0].Content.Parts) > 0 {
+				if txt, ok := resp.Candidates[0].Content.Parts[0].(genai.Text); ok {
+					outputChan <- string(txt)
+				}
+			}
+		}
+	}()
+
+	return outputChan, nil
 }
 
 // NewGeminiProvider là factory function được gọi bởi hàm llm.Create.
@@ -57,6 +87,15 @@ func (p *GeminiProvider) Cleanup() error {
 		p.client = nil
 	}
 	return nil
+}
+func LoadJSONAsMap(path string) (map[string]interface{}, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	var result map[string]interface{}
+	err = json.Unmarshal(data, &result)
+	return result, err
 }
 
 // Chat implement phần `Chat` của interface LLMProvider.

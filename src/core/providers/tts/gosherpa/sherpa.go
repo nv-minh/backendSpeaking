@@ -28,7 +28,7 @@ func NewProvider(config *tts.Config, deleteFile bool) (*Provider, error) {
 	dialer := websocket.Dialer{
 		HandshakeTimeout: 10 * time.Second, // 设置握手超时
 	}
-	conn, _, err := dialer.DialContext(context.Background(), config.Cluster, map[string][]string{})
+	conn, _, err := dialer.DialContext(context.Background(), config.Data["Cluster"].(string), map[string][]string{})
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func (p *Provider) ToTTS(text string) (string, error) {
 	SherpaTTSStartTime := time.Now()
 
 	// 创建临时文件路径用于保存 SherpaTTS 生成的 MP3
-	outputDir := p.BaseProvider.Config().OutputDir
+	outputDir := p.Config().Data["output_dir"].(string)
 	if outputDir == "" {
 		outputDir = os.TempDir() // Use system temp dir if not configured
 	}

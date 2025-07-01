@@ -16,6 +16,11 @@ type Provider struct {
 	maxTokens int
 }
 
+func (p *Provider) StreamChat(ctx context.Context, sessionID, message string) (<-chan string, error) {
+	//TODO implement me
+	return nil, fmt.Errorf("not implemented")
+}
+
 func (p *Provider) Chat(ctx context.Context, sessionID string, prompt string) (*types.Message, error) {
 	return nil, fmt.Errorf("not implemented")
 }

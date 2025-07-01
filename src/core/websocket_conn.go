@@ -21,6 +21,10 @@ type websocketConn struct {
 	lastActive int64      // 最后活跃时间戳（原子操作）
 }
 
+func (w *websocketConn) SetReadDeadline(t time.Time) error {
+	return w.conn.SetReadDeadline(t)
+}
+
 func (w *websocketConn) ReadMessage() (messageType int, p []byte, err error) {
 	if atomic.LoadInt32(&w.closed) == 1 {
 		return 0, nil, ErrConnectionClosed

@@ -78,17 +78,7 @@ type VADConfig struct {
 type ASRConfig map[string]interface{}
 
 // TTSConfig TTS配置结构
-type TTSConfig struct {
-	Type      string `yaml:"type"`
-	Voice     string `yaml:"voice"`
-	Format    string `yaml:"format"`
-	OutputDir string `yaml:"output_dir"`
-	AppID     string `yaml:"appid"`
-	Token     string `yaml:"token"`
-	Cluster   string `yaml:"cluster"`
-	APIKey    string `yaml:"api_key"`    // MỚI: Thêm cho Gemini và các provider khác
-	ModelName string `yaml:"model_name"` // MỚI: Thêm cho Gemini và các provider khác
-}
+type TTSConfig map[string]interface{}
 
 // LLMConfig LLM配置结构
 type LLMConfig struct {

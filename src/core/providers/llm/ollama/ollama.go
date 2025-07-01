@@ -19,6 +19,10 @@ type Provider struct {
 	isQwen3   bool
 }
 
+func (p *Provider) StreamChat(ctx context.Context, sessionID, message string) (<-chan string, error) {
+	return nil, errors.New("not implemented")
+}
+
 func (p *Provider) Chat(ctx context.Context, sessionID string, prompt string) (*types.Message, error) {
 	return nil, errors.New("not implemented")
 }

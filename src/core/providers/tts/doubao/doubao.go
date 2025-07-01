@@ -73,7 +73,7 @@ func NewProvider(config *tts.Config, deleteFile bool) (*Provider, error) {
 // ToTTS 实现文本到语音的转换
 func (p *Provider) ToTTS(text string) (string, error) {
 	// 创建WebSocket连接
-	header := http.Header{"Authorization": []string{fmt.Sprintf("Bearer;%s", p.Config().Token)}}
+	header := http.Header{"Authorization": []string{fmt.Sprintf("Bearer;%s", p.Config().Data["Token"].(string))}}
 	conn, _, err := websocket.DefaultDialer.Dial(p.baseURL, header)
 	if err != nil {
 		return "", fmt.Errorf("连接WebSocket服务器失败: %v", err)
@@ -83,15 +83,15 @@ func (p *Provider) ToTTS(text string) (string, error) {
 	// 准备请求参数
 	reqParams := map[string]map[string]interface{}{
 		"app": {
-			"appid":   p.Config().AppID,
-			"token":   p.Config().Token,
-			"cluster": p.Config().Cluster,
+			"appid":   p.Config().Data["AppID"].(string),
+			"token":   p.Config().Data["Token"].(string),
+			"cluster": p.Config().Data["Cluster"].(string),
 		},
 		"user": {
 			"uid": "uid",
 		},
 		"audio": {
-			"voice_type":   p.Config().Voice,
+			"voice_type":   p.Config().Data["Voice"].(string),
 			"encoding":     "mp3",
 			"speed_ratio":  1.0,
 			"volume_ratio": 1.0,
@@ -133,7 +133,7 @@ func (p *Provider) ToTTS(text string) (string, error) {
 	}
 
 	// 创建临时文件
-	outputDir := p.Config().OutputDir
+	outputDir := p.Config().Data["output_dir"].(string)
 	if outputDir == "" {
 		outputDir = "tmp"
 	}

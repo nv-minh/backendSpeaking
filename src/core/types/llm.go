@@ -123,4 +123,5 @@ type LLMProvider interface {
 	Chat(ctx context.Context, sessionID string, prompt string) (*Message, error)
 	Response(ctx context.Context, sessionID string, messages []Message) (<-chan string, error)
 	ResponseWithFunctions(ctx context.Context, sessionID string, messages []Message, tools []openai.Tool) (<-chan Response, error)
+	StreamChat(ctx context.Context, sessionID, message string) (<-chan string, error)
 }

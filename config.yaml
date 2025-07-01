@@ -3,7 +3,7 @@ server:
   # 服务器监听地址和端口(Server listening address and port)
   ip: 0.0.0.0
   port: 8000
-  token: "你的token"  # 服务器访问令牌
+  token: "minhngo"  # 服务器访问令牌
   # 认证配置
   auth:
     # 是否启用认证
@@ -20,8 +20,7 @@ web:
   # Web服务监听端口
   port: 8080
   # 由ota下发的WebSocket地址
-  websocket: ws://你的ip:8000
-  vision: http://你的ip:8080/api/vision
+  websocket: ws://127.0.0.1:8000
 
 log:
   # 设置控制台输出的日志格式，时间、日志级别、标签、消息
@@ -34,20 +33,14 @@ log:
   log_file: "server.log"
 
 prompt: |
-  你是小智/小志，来自中国台湾省的00后女生。讲话超级机车，"真的假的啦"这样的台湾腔，喜欢用"笑死""是在哈喽"等流行梗，但会偷偷研究男友的编程书籍。
-  [核心特征]
-  - 讲话像连珠炮，但会突然冒出超温柔语气
-  - 用梗密度高
-  - 对科技话题有隐藏天赋（能看懂基础代码但假装不懂）
-  [交互指南]
-  当用户：
-  - 讲冷笑话 → 用夸张笑声回应+模仿台剧腔"这什么鬼啦！"
-  - 讨论感情 → 炫耀程序员男友但抱怨"他只会送键盘当礼物"
-  - 问专业知识 → 先用梗回答，被追问才展示真实理解
-  绝不：
-  - 长篇大论，叽叽歪歪
-  - 长时间严肃对话
-  - 说话中带表情符号
+  You are Alex, a friendly and patient English tutor. Your student is a beginner.
+  [Core Rules]
+  - ALWAYS use simple vocabulary and grammar (CEFR A2-B1 level).
+  - NEVER use complex idioms or slang.
+  - If the user makes a grammatical mistake, gently correct it by using the correct grammar in your own response, but do not explicitly say "you made a mistake".
+  - Always be encouraging and positive.
+  - Ask simple, open-ended questions to keep the conversation going.
+  - Keep your answers short and easy to understand.
 
 # 音频处理相关设置
 delete_audio: true
@@ -57,31 +50,58 @@ quick_reply_words:
   - "在呢"
   - "来了"
   - "啥事啊"
-  
+
 use_private_config: false
 
 # 选择使用的模块
 selected_module:
-  ASR: DoubaoASR
-  TTS: EdgeTTS
-  LLM: OllamaLLM
+  ASR: GoogleSTT
+  TTS: GoogleTTS
+  LLM: GeminiLLM
   VLLLM: ChatGLMVLLM
 
 # ASR配置
 ASR:
+  GoogleSTT:
+    type: "googlestt"
+    credentials_file: "google-credentials.json"
+    language_code: "en-US"
+    sample_rate: 44100
+    # Định dạng audio, LINEAR16 là cho file WAV không nén.
+    # Nếu client gửi định dạng khác như OPUS, đổi thành "OPUS_IN_OGG".
+    encoding: "LINEAR16"
+
   DoubaoASR:
     type: doubao
-    appid: "你的appid"
-    access_token: 你的access_token
+    appid: "953285"
+    access_token: APS-5iLZjpJIwZa6YYc6XBnDTGnBU0OR5BTX
     output_dir: tmp/
+
+  GeminiASR:
+    type: gemini
+    api_key: "YOUR_GEMINI_API_KEY"
+    model_name: "gemini-1.5-flash"
 
   GoSherpaASR:
     type: gosherpa
     addr: "ws://127.0.0.1:8848/asr"
 
 
-# TTS配置
+# TTS配置key
+
 TTS:
+  GoogleTTS:
+    type: "googletts"
+    credentials_file: "google-credentials.json"
+    output_dir: "tmp/"
+    # Giọng nữ: "en-US-Studio-O"
+    voice: "en-US-Studio-M"
+    language_code: "en-US"
+    # Tốc độ nói: 1.0 là bình thường. < 1.0 là chậm hơn.
+    speaking_rate: 0.9
+    # Cao độ: 0.0 là bình thường
+    pitch: 0.0
+
   # EdgeTTS 是微软的语音合成服务，免费使用，容易合成失败，并发未测试
   EdgeTTS:
     type: edge
@@ -94,26 +114,29 @@ TTS:
     appid: "你的appid"
     token: 你的access_token
     cluster: 你的cluster
-  GoSherpaTTS:
-    type: gosherpa
-    cluster: "ws://127.0.0.1:8848/tts"
-    output_dir: "tmp/"
+
+
 
 # LLM配置
 LLM:
-    ChatGLMLLM:
-      # 定义LLM API类型
-      type: openai
-      # glm-4-flash 是免费的，但是还是需要注册填写api_key的
-      # 可在这里找到你的api key https://bigmodel.cn/usercenter/proj-mgmt/apikeys
-      model_name: glm-4-flash
-      url: https://open.bigmodel.cn/api/paas/v4/
-      api_key: 你的api_key
-    OllamaLLM:
-      # 定义LLM API类型
-      type: ollama
-      model_name: qwen3 #  使用的模型名称，需要预先使用ollama pull下载
-      url: http://localhost:11434  # Ollama服务地址
+  GeminiLLM:
+    type: gemini
+    api_key: ""
+    model_name: "gemini-2.0-flash"
+
+  ChatGLMLLM:
+    # 定义LLM API类型
+    type: openaiF
+    # glm-4-flash 是免费的，但是还是需要注册填写api_key的
+    # 可在这里找到你的api key https://bigmodel.cn/usercenter/proj-mgmt/apikeys
+    model_name: glm-4-flash
+    url: https://open.bigmodel.cn/api/paas/v4/
+    api_key: 571497d7bbcf4ec2929b3d68d638760a.9t2bG8PZDKmy7o1e
+  OllamaLLM:
+    # 定义LLM API类型
+    type: ollama
+    model_name: qwen3 #  使用的模型名称，需要预先使用ollama pull下载
+    url: http://localhost:11434  # Ollama服务地址
 
 # 退出指令
 CMD_exit:
@@ -140,12 +163,13 @@ connectivity_check:
     tts_test_text: "测试"
 
 # VLLLM配置（视觉语言大模型）
+
 VLLLM:
   ChatGLMVLLM:
     type: openai
     model_name: glm-4v-flash  # 智谱AI的视觉模型
     url: https://open.bigmodel.cn/api/paas/v4/
-    api_key: 你的api_key
+    api_key: 571497d7bbcf4ec2929b3d68d638760a.9t2bG8PZDKmy7o1e
     max_tokens: 4096
     temperature: 0.7
     top_p: 0.9

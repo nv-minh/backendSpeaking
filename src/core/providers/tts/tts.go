@@ -4,21 +4,55 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-
 	"xiaozhi-server-go/src/core/providers"
 )
 
 // Config TTS配置结构
-type Config struct {
-	Type       string `yaml:"type"`
-	OutputDir  string `yaml:"output_dir"`
-	Voice      string `yaml:"voice,omitempty"`
-	Format     string `yaml:"format,omitempty"`
-	SampleRate int    `yaml:"sample_rate,omitempty"`
-	AppID      string `yaml:"appid"`
-	Token      string `yaml:"token"`
-	Cluster    string `yaml:"cluster"`
+type GoogleTTSConfig struct {
+	CredentialsFile string `yaml:"credentials_file"`
 }
+
+type Config struct {
+	Type string
+	Data map[string]interface{}
+}
+
+//type GoogleTTS struct {
+//	*tts.BaseProvider // Kế thừa các thuộc tính và phương thức chung
+//	credsFile         string
+//	OutputDir         string  `yaml:"output_dir"`
+//	Voice             string  `yaml:"voice,omitempty"`
+//	Format            string  `yaml:"format,omitempty"`
+//	SampleRate        int     `yaml:"sample_rate,omitempty"`
+//	AppID             string  `yaml:"appid"`
+//	Token             string  `yaml:"token"`
+//	Cluster           string  `yaml:"cluster"`
+//	LanguageCode      string  `yaml:"language_code,omitempty"`
+//	SpeakingRate      float64 `yaml:"speaking_rate,omitempty"`
+//	Pitch             float64 `yaml:"pitch,omitempty"`
+//}
+
+//type Config struct {
+//	TTS struct {
+//		GoogleTTS GoogleTTSConfig `yaml:"GoogleTTS"`
+//	} `yaml:"TTS"`
+
+//}
+
+//type Config struct {
+//	Type            string  `yaml:"type"`
+//	OutputDir       string  `yaml:"output_dir"`
+//	Voice           string  `yaml:"voice,omitempty"`
+//	Format          string  `yaml:"format,omitempty"`
+//	SampleRate      int     `yaml:"sample_rate,omitempty"`
+//	AppID           string  `yaml:"appid"`
+//	Token           string  `yaml:"token"`
+//	Cluster         string  `yaml:"cluster"`
+//	LanguageCode    string  `yaml:"language_code,omitempty"`
+//	SpeakingRate    float64 `yaml:"speaking_rate,omitempty"`
+//	Pitch           float64 `yaml:"pitch,omitempty"`
+//	CredentialsFile string  `yaml:"credentials_file"`
+//}
 
 // Provider TTS提供者接口
 type Provider interface {
@@ -51,8 +85,25 @@ func NewBaseProvider(config *Config, deleteFile bool) *BaseProvider {
 
 // Initialize 初始化提供者
 func (p *BaseProvider) Initialize() error {
-	if err := os.MkdirAll(p.config.OutputDir, 0755); err != nil {
-		return fmt.Errorf("创建输出目录失败: %v", err)
+	// Kiểm tra xem config và Data có nil không để tránh panic
+	if p.config == nil || p.config.Data == nil {
+		return fmt.Errorf("cấu hình (config) hoặc config.Data chưa được khởi tạo")
+	}
+
+	// Lấy giá trị OutputDir một cách an toàn
+	outputDir, ok := p.config.Data["output_dir"].(string)
+	if !ok {
+		// 'ok' sẽ là false nếu key không tồn tại hoặc giá trị không phải là string
+		return fmt.Errorf("key 'OutputDir' không tồn tại trong config.Data hoặc không phải là chuỗi (string)")
+	}
+
+	if outputDir == "" {
+		return fmt.Errorf("giá trị của 'OutputDir' không được để trống")
+	}
+
+	// Bây giờ mới sử dụng giá trị một cách an toàn
+	if err := os.MkdirAll(outputDir, 0755); err != nil {
+		return fmt.Errorf("tạo thư mục output '%s' thất bại: %v", outputDir, err)
 	}
 	return nil
 }
@@ -61,7 +112,7 @@ func (p *BaseProvider) Initialize() error {
 func (p *BaseProvider) Cleanup() error {
 	if p.deleteFile {
 		// 清理输出目录中的临时文件
-		pattern := filepath.Join(p.config.OutputDir, "*.{wav,mp3,opus}")
+		pattern := filepath.Join(p.config.Data["output_dir"].(string), "*.{wav,mp3,opus}")
 		matches, err := filepath.Glob(pattern)
 		if err != nil {
 			return fmt.Errorf("查找临时文件失败: %v", err)

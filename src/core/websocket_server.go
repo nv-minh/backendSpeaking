@@ -4,21 +4,22 @@ import (
 	speech "cloud.google.com/go/speech/apiv1"
 	"cloud.google.com/go/speech/apiv1/speechpb"
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
 	"google.golang.org/api/option"
 	"io"
 	_ "io"
-	"log"
 	"net/http"
 	"sync"
 	"time"
 	"xiaozhi-server-go/src/configs"
-	"xiaozhi-server-go/src/connections"
-	_ "xiaozhi-server-go/src/connections" // <-- DÒNG IMPORT QUAN TRỌNG ĐÃ ĐƯỢC THÊM
+	_ "xiaozhi-server-go/src/connections"
 	"xiaozhi-server-go/src/core/pool"
 	_ "xiaozhi-server-go/src/core/providers/llm"
+	"xiaozhi-server-go/src/core/providers/tts/googletts"
+	_ "xiaozhi-server-go/src/core/providers/tts/googletts"
 	"xiaozhi-server-go/src/core/utils"
 	"xiaozhi-server-go/src/task"
 )
@@ -231,6 +232,12 @@ func (ws *WebSocketServer) GetActiveConnectionsCount() int {
 	return count
 }
 
+type WsMessage struct {
+	Type    string `json:"type"`     // "transcript", "bot_response", "error"
+	IsFinal bool   `json:"is_final"` // Dành cho transcript
+	Text    string `json:"text"`
+}
+
 func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Request) {
 	ws.logger.Info("Nhận được yêu cầu kết nối WebSocket mới đến /conversation (LIVE)")
 
@@ -241,88 +248,83 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 	}
 	defer conn.Close()
 
-	// === BƯỚC 1: TÍCH HỢP LLM - LẤY PROVIDER VÀ TẠO SESSION ID ===
-	ws.logger.Info("Bắt đầu tích hợp LLM cho phiên làm việc...")
+	// Helper function để gửi tin nhắn JSON
+	sendJSON := func(msgType string, text string, isFinal bool) {
+		message, _ := json.Marshal(WsMessage{Type: msgType, Text: text, IsFinal: isFinal})
+		conn.WriteMessage(websocket.TextMessage, message)
+	}
 
-	// HÃY DÙNG: Lấy cả bộ provider từ "ông chủ" PoolManager (ws.pm)
+	// === BƯỚC 1: LẤY BỘ PROVIDER VÀ TẠO SESSION ID (Không đổi) ===
 	providerSet, err := ws.pm.GetProviderSet()
 	if err != nil {
 		ws.logger.Error("Không thể lấy ProviderSet từ PoolManager: %v", err)
-		err := conn.WriteMessage(websocket.TextMessage, []byte("Lỗi hệ thống: Server đang quá tải."))
-		if err != nil {
-			return
-		}
+		sendJSON("error", "Lỗi hệ thống: Server đang quá tải.", true)
 		return
 	}
-	// Và trả lại cả bộ khi hàm kết thúc
-	defer func(pm *pool.PoolManager, set *pool.ProviderSet) {
-		err := pm.ReturnProviderSet(set)
-		if err != nil {
+	defer ws.pm.ReturnProviderSet(providerSet)
 
-		}
-	}(ws.pm, providerSet)
-
-	// Bây giờ bạn có thể lấy llmProvider từ bộ công cụ đó
+	// (Phần lấy llmProvider, ttsProvider và sessionID)
 	llmProvider := providerSet.LLM
 	if llmProvider == nil {
-		ws.logger.Error("LLM Provider không có sẵn trong ProviderSet")
-		err := conn.WriteMessage(websocket.TextMessage, []byte("Bot: Xin lỗi, dịch vụ AI hiện không khả dụng."))
-		if err != nil {
-			return
-		}
+		ws.logger.Error("LLM Provider không có sẵn")
+		sendJSON("error", "Bot: Xin lỗi, dịch vụ AI hiện không khả dụng.", true)
 		return
 	}
-
-	// Tạo một ID phiên duy nhất cho cuộc trò chuyện này để duy trì ngữ cảnh với Gemini
+	ttsProvider := providerSet.TTS
+	if ttsProvider == nil {
+		ws.logger.Error("TTS Provider không có sẵn")
+		sendJSON("error", "Bot: Không thể nói được, thiếu dịch vụ TTS.", true)
+		return
+	}
 	sessionID := uuid.New().String()
 	ws.logger.Info("Phiên LLM được tạo với ID: %s", sessionID)
-	// =================================================================
 
-	// Lấy cấu hình ASR (STT)
+	// === BƯỚC 2: KHỞI TẠO GOOGLE STT (VỚI INTERIM RESULTS) ===
 	credsFile := ws.config.ASR["GoogleSTT"]["credentials_file"].(string)
 	languageCode := ws.config.ASR["GoogleSTT"]["language_code"].(string)
 
-	ctx := context.Background()
-	client, err := speech.NewClient(ctx, option.WithCredentialsFile(credsFile))
+	ctx, cancel := context.WithCancel(r.Context())
+	defer cancel()
+
+	speechClient, err := speech.NewClient(ctx, option.WithCredentialsFile(credsFile))
 	if err != nil {
 		ws.logger.Error("Lỗi tạo speech client: %v", err)
 		return
 	}
-	defer client.Close()
+	defer speechClient.Close()
 
-	stream, err := client.StreamingRecognize(ctx)
+	stream, err := speechClient.StreamingRecognize(ctx)
 	if err != nil {
 		ws.logger.Error("Lỗi tạo streaming recognize: %v", err)
 		return
 	}
 
-	// Gửi cấu hình STT, yêu cầu trả về kết quả cuối cùng (khi người dùng ngắt lời)
 	if err := stream.Send(&speechpb.StreamingRecognizeRequest{
 		StreamingRequest: &speechpb.StreamingRecognizeRequest_StreamingConfig{
 			StreamingConfig: &speechpb.StreamingRecognitionConfig{
 				Config: &speechpb.RecognitionConfig{
-					Encoding:          speechpb.RecognitionConfig_LINEAR16,
-					SampleRateHertz:   16000,
-					LanguageCode:      languageCode,
-					AudioChannelCount: 1,
-					// Bạn có thể giữ lại các cấu hình tối ưu của mình
-					Model:                      "telephony",
+					Encoding:                   speechpb.RecognitionConfig_LINEAR16,
+					SampleRateHertz:            16000,
+					LanguageCode:               languageCode,
+					AudioChannelCount:          1,
+					AlternativeLanguageCodes:   []string{"vi-VN"},
+					Model:                      "command_and_search",
 					EnableAutomaticPunctuation: true,
 				},
-				InterimResults:  false, // Rất quan trọng: Chỉ nhận kết quả khi người dùng nói xong
-				SingleUtterance: false,
+				InterimResults:  true,
+				SingleUtterance: true,
 			},
 		},
 	}); err != nil {
 		ws.logger.Error("Lỗi gửi config đến Google STT: %v", err)
 		return
 	}
-	ws.logger.Info("Google STT: Đã gửi cấu hình. Sẵn sàng nhận audio...")
+	ws.logger.Info("Google STT: Đã sẵn sàng nhận âm thanh...")
 
 	var wg sync.WaitGroup
 	wg.Add(1)
 
-	// Goroutine nhận kết quả từ Google
+	// === BƯỚC 3: GOROUTINE NHẬN KẾT QUẢ STT (LOGIC MỚI) ===
 	go func() {
 		defer wg.Done()
 		for {
@@ -331,119 +333,69 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 				return
 			}
 			if err != nil {
-				ws.logger.Error("Lỗi nhận kết quả từ Google STT: %v", err)
-				// Có thể thông báo lỗi cho client ở đây nếu cần
-				// conn.WriteMessage(1, []byte("Lỗi: Mất kết nối tới dịch vụ giọng nói."))
+				// Nếu client đóng kết nối, context sẽ bị cancel, gây ra lỗi ở đây.
+				// Chúng ta chỉ cần log và thoát khỏi goroutine.
+				ws.logger.Info("Lỗi nhận từ Google STT (có thể do client đã đóng kết nối): %v", err)
 				return
 			}
 
-			if len(resp.Results) > 0 && resp.Results[0].Alternatives != nil && len(resp.Results[0].Alternatives) > 0 {
-				// Lấy bản ghi giọng nói từ STT
-				transcript := resp.Results[0].Alternatives[0].Transcript
-				ws.logger.Info("STT Transcript nhận được: \"%s\"", transcript)
+			if len(resp.Results) > 0 && len(resp.Results[0].Alternatives) > 0 {
+				result := resp.Results[0]
+				transcript := result.Alternatives[0].Transcript
 
-				// Gửi lại transcript cho client để họ biết hệ thống đã nghe thấy gì (Cải thiện UX)
-				userMessage := fmt.Sprintf("You: %s", transcript)
-				if err := conn.WriteMessage(1, []byte(userMessage)); err != nil {
-					ws.logger.Error("Lỗi gửi transcript về client: %v", err)
-				}
+				if result.IsFinal {
+					ws.logger.Info("FINAL Transcript: \"%s\"", transcript)
+					sendJSON("transcript", transcript, true) // Gửi kết quả cuối cùng
 
-				// === BƯỚC 2: GỌI HÀM CHAT CỦA GEMINI PROVIDER ===
-				ws.logger.Info("Đang gửi transcript tới Gemini với sessionID: %s...", sessionID)
-
-				llmResponse, err := llmProvider.Chat(ctx, sessionID, transcript)
-				if err != nil {
-					ws.logger.Error("Lỗi khi gọi Gemini LLM: %v", err)
-					// Gửi thông báo lỗi về client
-					err := conn.WriteMessage(1, []byte("Bot: Xin lỗi, tôi đang gặp sự cố khi suy nghĩ."))
+					// === BƯỚC 4: GỌI LLM (CHỈ KHI CÓ KẾT QUẢ CUỐI CÙNG) ===
+					llmResp, err := llmProvider.Chat(ctx, sessionID, transcript)
 					if err != nil {
-						return
+						ws.logger.Error("Lỗi gọi Gemini LLM: %v", err)
+						sendJSON("error", "Bot: Xin lỗi, tôi đang gặp sự cố khi suy nghĩ.", true)
+						continue
 					}
-					continue // Tiếp tục vòng lặp để nhận yêu cầu tiếp theo
-				}
+					ws.logger.Info("Gemini trả lời: \"%s\"", llmResp.Content)
+					sendJSON("bot_response", llmResp.Content, true) // Gửi text của bot
 
-				ws.logger.Info("Gemini trả lời: \"%s\"", llmResponse.Content)
-
-				// Gửi câu trả lời của LLM về client
-				botMessage := fmt.Sprintf("Bot: %s", llmResponse.Content)
-				if err := conn.WriteMessage(1, []byte(botMessage)); err != nil {
-					ws.logger.Error("Lỗi gửi câu trả lời của LLM về client: %v", err)
+					// === BƯỚC 5: TTS - STREAM ÂM THANH NGƯỢC VỀ CLIENT ===
+					audioStream, err := ttsProvider.(*googletts.GoogleTTSProvider).StreamSynthesis(ctx, llmResp.Content)
+					if err != nil {
+						ws.logger.Error("Lỗi TTS: %v", err)
+						sendJSON("error", "Bot: Tôi không thể nói câu trả lời.", true)
+						continue
+					}
+					for chunk := range audioStream {
+						if err := conn.WriteMessage(websocket.BinaryMessage, chunk); err != nil {
+							ws.logger.Error("Lỗi gửi chunk âm thanh: %v", err)
+							break
+						}
+					}
+				} else {
+					ws.logger.Info("INTERIM Transcript: \"%s\"", transcript)
+					sendJSON("transcript", transcript, false)
 				}
-				// ===============================================
 			}
 		}
 	}()
 
-	// Vòng lặp đọc audio từ client và gửi đến Google STT
+	// === BƯỚC 6: NHẬN AUDIO TỪ CLIENT
 	for {
 		msgType, pcmChunk, err := conn.ReadMessage()
 		if err != nil {
-			ws.logger.Info("Kết nối từ client đã đóng: %v", err)
+			ws.logger.Info("Client đóng kết nối: %v", err)
 			break
 		}
-		if msgType == 2 { // Binary Message
+		if msgType == websocket.BinaryMessage {
 			if err := stream.Send(&speechpb.StreamingRecognizeRequest{
-				StreamingRequest: &speechpb.StreamingRecognizeRequest_AudioContent{
-					AudioContent: pcmChunk,
-				},
+				StreamingRequest: &speechpb.StreamingRecognizeRequest_AudioContent{AudioContent: pcmChunk},
 			}); err != nil {
-				ws.logger.Error("Lỗi gửi audio chunk đến Google: %v", err)
+				ws.logger.Error("Lỗi gửi audio chunk đến Google STT: %v", err)
+				break
 			}
 		}
 	}
 
 	stream.CloseSend()
 	wg.Wait()
-	ws.logger.Info("Hoàn tất phiên /conversation với sessionID: %s.", sessionID)
-}
-
-// === THÊM PHƯƠNG THỨC HELPER NÀY VÀO TRONG *WebSocketServer ===
-
-// processUtterance nhận một khối audio hoàn chỉnh và gửi đến Google để xử lý
-func (ws *WebSocketServer) processUtterance(conn connections.Conn, audioData []byte) {
-	log.Printf("processUtterance: Bắt đầu xử lý %d bytes.", len(audioData))
-
-	// Lấy cấu hình và kết nối đến Google
-	credsFile := ws.config.ASR["GoogleSTT"]["credentials_file"].(string)
-	languageCode := ws.config.ASR["GoogleSTT"]["language_code"].(string)
-	sampleRate := int32(ws.config.ASR["GoogleSTT"]["sample_rate"].(int))
-
-	ctx := context.Background()
-	client, err := speech.NewClient(ctx, option.WithCredentialsFile(credsFile))
-	if err != nil {
-		log.Printf("Lỗi tạo speech client: %v", err)
-		return
-	}
-	defer client.Close()
-
-	// Sử dụng API Recognize non-streaming vì chúng ta đã có toàn bộ audio của lượt nói
-	resp, err := client.Recognize(ctx, &speechpb.RecognizeRequest{
-		Config: &speechpb.RecognitionConfig{
-			Encoding:                 speechpb.RecognitionConfig_LINEAR16,
-			SampleRateHertz:          sampleRate,
-			LanguageCode:             languageCode,
-			AlternativeLanguageCodes: []string{"vi-VN"},
-			Model:                    "telephony",
-			AudioChannelCount:        1,
-		},
-		Audio: &speechpb.RecognitionAudio{
-			AudioSource: &speechpb.RecognitionAudio_Content{Content: audioData},
-		},
-	})
-
-	if err != nil {
-		log.Printf("Lỗi Recognize từ Google: %v", err)
-		return
-	}
-
-	// Xử lý kết quả và gửi về client
-	if len(resp.Results) > 0 && len(resp.Results[0].Alternatives) > 0 {
-		transcript := resp.Results[0].Alternatives[0].Transcript
-		log.Printf("ĐÃ NHẬN KẾT QUẢ: '%s'", transcript)
-		// TODO: Ở bước tiếp theo, chúng ta sẽ gửi `transcript` này đến LLM
-		// Hiện tại, chúng ta gửi thẳng về client để test
-		conn.WriteMessage(1, []byte(transcript))
-	} else {
-		log.Println("Google không trả về kết quả phiên âm nào.")
-	}
+	ws.logger.Info("Kết thúc phiên /conversation với sessionID: %s", sessionID)
 }
