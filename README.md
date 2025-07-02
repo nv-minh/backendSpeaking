@@ -1,5 +1,5 @@
 # Tạo thư mục ẩn nếu cần
-mkdir .config.yaml
+touch .config.yaml
 
 # Sao chép file cấu hình
 cp config.yaml .config.yaml
