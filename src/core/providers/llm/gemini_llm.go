@@ -13,8 +13,7 @@ import (
 	"google.golang.org/api/iterator"
 	"google.golang.org/api/option"
 
-	"github.com/sashabaranov/go-openai" // Cần thiết cho ResponseWithFunctions
-	// Import các package cần thiết
+	"github.com/sashabaranov/go-openai" 
 	"xiaozhi-server-go/src/core/providers"
 )
 
@@ -216,8 +215,6 @@ func (p *GeminiProvider) Response(ctx context.Context, sessionID string, message
 	return outChan, nil
 }
 
-// ResponseWithFunctions implement phần `ResponseWithFunctions` của interface LLMProvider.
-// API Gemini hiện tại không hỗ trợ trực tiếp Function Calling kiểu OpenAI, vì vậy chúng ta trả về lỗi.
 func (p *GeminiProvider) ResponseWithFunctions(ctx context.Context, sessionID string, messages []providers.Message, tools []openai.Tool) (<-chan types.Response, error) {
 	return nil, fmt.Errorf("gemini provider hiện tại không hỗ trợ Function Calling theo kiểu OpenAI")
 }
