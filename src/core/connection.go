@@ -47,6 +47,9 @@ type Connection interface {
 	// 检查是否过期
 	IsStale(timeout time.Duration) bool
 	SetReadDeadline(t time.Time) error
+	SetReadLimit(limit int64)
+	SetPongHandler(h func(string) error)
+	SetWriteDeadline(t time.Time) error
 }
 
 type configGetter interface {

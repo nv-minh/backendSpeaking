@@ -25,6 +25,18 @@ func (w *websocketConn) SetReadDeadline(t time.Time) error {
 	return w.conn.SetReadDeadline(t)
 }
 
+func (w *websocketConn) SetReadLimit(limit int64) {
+	w.conn.SetReadLimit(limit)
+}
+
+func (w *websocketConn) SetPongHandler(h func(string) error) {
+	w.conn.SetPongHandler(h)
+}
+
+func (w *websocketConn) SetWriteDeadline(t time.Time) error {
+	return w.conn.SetWriteDeadline(t)
+}
+
 func (w *websocketConn) ReadMessage() (messageType int, p []byte, err error) {
 	if atomic.LoadInt32(&w.closed) == 1 {
 		return 0, nil, ErrConnectionClosed
