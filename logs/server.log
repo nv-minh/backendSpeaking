@@ -361,3 +361,153 @@
 {"time":"2025-07-05T00:24:13.600701+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
 {"time":"2025-07-05T00:24:13.600747+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
 {"time":"2025-07-05T00:24:13.600847+07:00","level":"INFO","msg":"程序已成功退出"}
+{"time":"2025-07-08T23:26:53.934284+07:00","level":"INFO","msg":"日志系统初始化成功, 配置文件路径: .config.yaml"}
+{"time":"2025-07-08T23:26:53.936293+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-07-08T23:26:53.93631+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-07-08T23:26:53.936318+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-07-08T23:26:53.936368+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-07-08T23:26:53.942621+07:00","level":"INFO","msg":"LLM资源池初始化成功，类型: GeminiLLM, 数量：5"}
+{"time":"2025-07-08T23:26:53.946258+07:00","level":"INFO","msg":"TTS资源池初始化成功，类型: GoogleTTS, 数量：5"}
+{"time":"2025-07-08T23:26:53.946325+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-07-08T23:26:53.946337+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-07-08T23:26:53.94641+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-07-08T23:26:53.946428+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-07-08T23:26:53.946443+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-07-08T23:26:53.94653+07:00","level":"INFO","msg":"连通性检查已禁用，跳过检查"}
+{"time":"2025-07-08T23:26:53.946539+07:00","level":"INFO","msg":"=== 连通性检查报告 ==="}
+{"time":"2025-07-08T23:26:53.946545+07:00","level":"INFO","msg":"=== 检查报告结束 ==="}
+{"time":"2025-07-08T23:26:53.946556+07:00","level":"INFO","msg":"ASR资源池初始化成功，类型: GoogleSTT, 数量：5"}
+{"time":"2025-07-08T23:26:53.947103+07:00","level":"INFO","msg":"LLM资源池初始化成功，类型: GeminiLLM, 数量：5"}
+{"time":"2025-07-08T23:26:53.948557+07:00","level":"INFO","msg":"TTS资源池初始化成功，类型: GoogleTTS, 数量：5"}
+{"time":"2025-07-08T23:26:53.948607+07:00","level":"INFO","msg":"VLLLM资源池初始化成功，类型: ChatGLMVLLM, 数量：5"}
+{"time":"2025-07-08T23:26:53.948619+07:00","level":"INFO","msg":"开始初始化MCP资源池，请等待..."}
+{"time":"2025-07-08T23:26:53.948637+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-07-08T23:26:53.948653+07:00","level":"ERROR","msg":"预初始化MCP服务器失败: no valid MCP server configuration found"}
+{"time":"2025-07-08T23:26:53.948665+07:00","level":"INFO","msg":"MCP资源池初始化成功，数量：2"}
+{"time":"2025-07-08T23:26:53.948694+07:00","level":"INFO","msg":"WebSocket 服务已成功启动"}
+{"time":"2025-07-08T23:26:53.948852+07:00","level":"INFO","msg":"VLLLM provider ChatGLMVLLM 初始化成功"}
+{"time":"2025-07-08T23:26:53.948871+07:00","level":"INFO","msg":"Vision HTTP服务路由注册完成"}
+{"time":"2025-07-08T23:26:53.948888+07:00","level":"INFO","msg":"启动WebSocket服务器 ws://0.0.0.0:8000..."}
+{"time":"2025-07-08T23:26:53.948922+07:00","level":"INFO","msg":"Gin 服务已启动，访问地址: http://0.0.0.0:8080"}
+{"time":"2025-07-08T23:26:58.583502+07:00","level":"INFO","msg":"Nhận được yêu cầu kết nối WebSocket mới đến /conversation (LIVE)"}
+{"time":"2025-07-08T23:26:58.583769+07:00","level":"INFO","msg":"Bắt đầu phiên hội thoại với ID: 5e3ec874-159b-4951-944d-e6afb813d51b"}
+{"time":"2025-07-08T23:26:58.583784+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Lượt mới: Đang chờ audio đầu tiên từ client..."}
+{"time":"2025-07-08T23:27:00.683064+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận audio đầu tiên. Bắt đầu stream tới Google STT..."}
+{"time":"2025-07-08T23:27:02.245748+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Hello.\""}
+{"time":"2025-07-08T23:27:02.827347+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Hello.\""}
+{"time":"2025-07-08T23:27:03.524154+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] FINAL Transcript: \"Hello.\""}
+{"time":"2025-07-08T23:27:03.609966+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận transcript. Đang gọi LLM..."}
+{"time":"2025-07-08T23:27:05.523936+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Gemini trả lời: \"Hi there! My name is Alex, and I am your English tutor. I am happy to help you learn. How are you today?\""}
+{"time":"2025-07-08T23:27:05.524021+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đang gọi TTS và streaming audio..."}
+{"time":"2025-07-08T23:27:07.372878+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Streaming TTS hoàn tất."}
+{"time":"2025-07-08T23:27:07.373219+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Lượt mới: Đang chờ audio đầu tiên từ client..."}
+{"time":"2025-07-08T23:27:07.373342+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Áp dụng speech adaptation với keywords: [greeting introduction]"}
+{"time":"2025-07-08T23:27:07.628161+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận audio đầu tiên. Bắt đầu stream tới Google STT..."}
+{"time":"2025-07-08T23:27:16.221026+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"I'm\""}
+{"time":"2025-07-08T23:27:16.821245+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"I'm\""}
+{"time":"2025-07-08T23:27:16.860454+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"I'm good.\""}
+{"time":"2025-07-08T23:27:17.419957+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"I'm\""}
+{"time":"2025-07-08T23:27:17.421972+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"I'm good.\""}
+{"time":"2025-07-08T23:27:18.131058+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] FINAL Transcript: \"I'm good.\""}
+{"time":"2025-07-08T23:27:18.211582+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận transcript. Đang gọi LLM..."}
+{"time":"2025-07-08T23:27:19.078472+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Gemini trả lời: \"That's great! Are you ready to learn some English today? What would you like to talk about?\""}
+{"time":"2025-07-08T23:27:19.078862+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đang gọi TTS và streaming audio..."}
+{"time":"2025-07-08T23:27:20.714271+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Streaming TTS hoàn tất."}
+{"time":"2025-07-08T23:27:20.714531+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Lượt mới: Đang chờ audio đầu tiên từ client..."}
+{"time":"2025-07-08T23:27:20.714654+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Áp dụng speech adaptation với keywords: [positive question ready]"}
+{"time":"2025-07-08T23:27:20.945959+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận audio đầu tiên. Bắt đầu stream tới Google STT..."}
+{"time":"2025-07-08T23:27:28.32648+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Number.\""}
+{"time":"2025-07-08T23:27:28.922624+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Number.\""}
+{"time":"2025-07-08T23:27:29.012342+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] FINAL Transcript: \"Number.\""}
+{"time":"2025-07-08T23:27:29.111296+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận transcript. Đang gọi LLM..."}
+{"time":"2025-07-08T23:27:30.101404+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Gemini trả lời: \"Okay, numbers! That's a good choice. Do you want to learn how to count, or something else about numbers?\""}
+{"time":"2025-07-08T23:27:30.101869+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đang gọi TTS và streaming audio..."}
+{"time":"2025-07-08T23:27:31.881585+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Streaming TTS hoàn tất."}
+{"time":"2025-07-08T23:27:31.881735+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Lượt mới: Đang chờ audio đầu tiên từ client..."}
+{"time":"2025-07-08T23:27:31.881807+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Áp dụng speech adaptation với keywords: [numbers question]"}
+{"time":"2025-07-08T23:27:32.229914+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận audio đầu tiên. Bắt đầu stream tới Google STT..."}
+{"time":"2025-07-08T23:27:41.145156+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Learn.\""}
+{"time":"2025-07-08T23:27:41.232873+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Learn how?\""}
+{"time":"2025-07-08T23:27:41.338231+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Learn how to.\""}
+{"time":"2025-07-08T23:27:41.711786+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Learn\""}
+{"time":"2025-07-08T23:27:41.842488+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Learn how\""}
+{"time":"2025-07-08T23:27:41.932011+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Learn how to\""}
+{"time":"2025-07-08T23:27:42.410923+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Learn how to count.\""}
+{"time":"2025-07-08T23:27:42.510942+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] FINAL Transcript: \"Learn how to count.\""}
+{"time":"2025-07-08T23:27:42.611774+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận transcript. Đang gọi LLM..."}
+{"time":"2025-07-08T23:27:43.413031+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Gemini trả lời: \"Great! We can start with the numbers from one to ten. Are you ready?\""}
+{"time":"2025-07-08T23:27:43.41343+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đang gọi TTS và streaming audio..."}
+{"time":"2025-07-08T23:27:45.055087+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Streaming TTS hoàn tất."}
+{"time":"2025-07-08T23:27:45.055241+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Lượt mới: Đang chờ audio đầu tiên từ client..."}
+{"time":"2025-07-08T23:27:45.055326+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Áp dụng speech adaptation với keywords: [counting one to ten ready]"}
+{"time":"2025-07-08T23:27:45.29211+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận audio đầu tiên. Bắt đầu stream tới Google STT..."}
+{"time":"2025-07-08T23:27:50.824221+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"I'm\""}
+{"time":"2025-07-08T23:27:51.012071+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"I'm ready.\""}
+{"time":"2025-07-08T23:27:51.421423+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"I'm\""}
+{"time":"2025-07-08T23:27:51.580839+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"I'm ready.\""}
+{"time":"2025-07-08T23:27:51.703214+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] FINAL Transcript: \"I'm ready.\""}
+{"time":"2025-07-08T23:27:51.711499+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận transcript. Đang gọi LLM..."}
+{"time":"2025-07-08T23:27:52.520274+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Gemini trả lời: \"Okay! Let's start. Repeat after me: One...\""}
+{"time":"2025-07-08T23:27:52.520816+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đang gọi TTS và streaming audio..."}
+{"time":"2025-07-08T23:27:52.583978+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] --- Sending PING ---"}
+{"time":"2025-07-08T23:27:54.069473+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Streaming TTS hoàn tất."}
+{"time":"2025-07-08T23:27:54.069891+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Lượt mới: Đang chờ audio đầu tiên từ client..."}
+{"time":"2025-07-08T23:27:54.070119+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Áp dụng speech adaptation với keywords: [start one]"}
+{"time":"2025-07-08T23:27:54.305112+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận audio đầu tiên. Bắt đầu stream tới Google STT..."}
+{"time":"2025-07-08T23:27:54.305867+07:00","level":"INFO","msg":"PONG received, resetting read deadline."}
+{"time":"2025-07-08T23:27:59.511747+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"On.\""}
+{"time":"2025-07-08T23:27:59.833959+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"On.\""}
+{"time":"2025-07-08T23:27:59.941041+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] FINAL Transcript: \"On.\""}
+{"time":"2025-07-08T23:28:00.012876+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận transcript. Đang gọi LLM..."}
+{"time":"2025-07-08T23:28:00.907344+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Gemini trả lời: \"Good! One. Now, Two...\""}
+{"time":"2025-07-08T23:28:00.907534+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đang gọi TTS và streaming audio..."}
+{"time":"2025-07-08T23:28:02.461925+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Streaming TTS hoàn tất."}
+{"time":"2025-07-08T23:28:02.462064+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Lượt mới: Đang chờ audio đầu tiên từ client..."}
+{"time":"2025-07-08T23:28:02.462172+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Áp dụng speech adaptation với keywords: [pronunciation two]"}
+{"time":"2025-07-08T23:28:02.771597+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận audio đầu tiên. Bắt đầu stream tới Google STT..."}
+{"time":"2025-07-08T23:28:06.22438+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Two.\""}
+{"time":"2025-07-08T23:28:06.741595+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Two.\""}
+{"time":"2025-07-08T23:28:06.828453+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] FINAL Transcript: \"Two.\""}
+{"time":"2025-07-08T23:28:06.911924+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận transcript. Đang gọi LLM..."}
+{"time":"2025-07-08T23:28:07.666425+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Gemini trả lời: \"Perfect! Two. Now, Three...\""}
+{"time":"2025-07-08T23:28:07.666888+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đang gọi TTS và streaming audio..."}
+{"time":"2025-07-08T23:28:09.203503+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Streaming TTS hoàn tất."}
+{"time":"2025-07-08T23:28:09.203638+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Lượt mới: Đang chờ audio đầu tiên từ client..."}
+{"time":"2025-07-08T23:28:09.203705+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Áp dụng speech adaptation với keywords: [perfect three]"}
+{"time":"2025-07-08T23:28:09.430822+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận audio đầu tiên. Bắt đầu stream tới Google STT..."}
+{"time":"2025-07-08T23:28:13.144766+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Three.\""}
+{"time":"2025-07-08T23:28:13.708064+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Three.\""}
+{"time":"2025-07-08T23:28:13.825261+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] FINAL Transcript: \"Three.\""}
+{"time":"2025-07-08T23:28:13.911449+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận transcript. Đang gọi LLM..."}
+{"time":"2025-07-08T23:28:14.696524+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Gemini trả lời: \"Excellent! Three. Next is Four...\""}
+{"time":"2025-07-08T23:28:14.696904+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đang gọi TTS và streaming audio..."}
+{"time":"2025-07-08T23:28:16.266486+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Streaming TTS hoàn tất."}
+{"time":"2025-07-08T23:28:16.26676+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Lượt mới: Đang chờ audio đầu tiên từ client..."}
+{"time":"2025-07-08T23:28:16.266848+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Áp dụng speech adaptation với keywords: [excellent four]"}
+{"time":"2025-07-08T23:28:16.505772+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận audio đầu tiên. Bắt đầu stream tới Google STT..."}
+{"time":"2025-07-08T23:28:20.747144+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Four.\""}
+{"time":"2025-07-08T23:28:21.13656+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] INTERIM Transcript: \"Call.\""}
+{"time":"2025-07-08T23:28:21.213796+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] FINAL Transcript: \"Four.\""}
+{"time":"2025-07-08T23:28:21.215002+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận transcript. Đang gọi LLM..."}
+{"time":"2025-07-08T23:28:21.934628+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Gemini trả lời: \"Very good! Four. Then, Five...\""}
+{"time":"2025-07-08T23:28:21.935225+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đang gọi TTS và streaming audio..."}
+{"time":"2025-07-08T23:28:23.530146+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Streaming TTS hoàn tất."}
+{"time":"2025-07-08T23:28:23.530281+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Lượt mới: Đang chờ audio đầu tiên từ client..."}
+{"time":"2025-07-08T23:28:23.530344+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Áp dụng speech adaptation với keywords: [very good five]"}
+{"time":"2025-07-08T23:28:23.782476+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Đã nhận audio đầu tiên. Bắt đầu stream tới Google STT..."}
+{"time":"2025-07-08T23:28:28.779135+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Client đóng kết nối hoặc lỗi đọc: websocket: close 1000 (normal)"}
+{"time":"2025-07-08T23:28:28.779698+07:00","level":"INFO","msg":"[5e3ec874-159b-4951-944d-e6afb813d51b] Context của request bị hủy, dừng goroutine ping."}
+{"time":"2025-07-08T23:31:37.674193+07:00","level":"INFO","msg":"接收到系统信号: interrupt，开始优雅关闭服务"}
+{"time":"2025-07-08T23:31:37.674919+07:00","level":"INFO","msg":"收到关闭信号，开始关闭HTTP服务..."}
+{"time":"2025-07-08T23:31:37.674945+07:00","level":"INFO","msg":"收到关闭信号，开始关闭WebSocket服务..."}
+{"time":"2025-07-08T23:31:37.67505+07:00","level":"INFO","msg":"正在关闭WebSocket服务器..."}
+{"time":"2025-07-08T23:31:37.675177+07:00","level":"INFO","msg":"HTTP服务已优雅关闭"}
+{"time":"2025-07-08T23:31:37.67737+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-07-08T23:31:37.677526+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-07-08T23:31:37.677573+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-07-08T23:31:37.677614+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-07-08T23:31:37.677655+07:00","level":"INFO","msg":"VLLLM Provider清理完成"}
+{"time":"2025-07-08T23:31:37.677739+07:00","level":"INFO","msg":"服务器已正常关闭"}
+{"time":"2025-07-08T23:31:37.677755+07:00","level":"INFO","msg":"所有服务已优雅关闭"}
+{"time":"2025-07-08T23:31:37.677754+07:00","level":"INFO","msg":"WebSocket服务已优雅关闭"}
+{"time":"2025-07-08T23:31:37.677859+07:00","level":"INFO","msg":"程序已成功退出"}
