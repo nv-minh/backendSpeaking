@@ -117,10 +117,15 @@ type FunctionRegistryInterface interface {
 	FunctionExists(name string) bool
 }
 
+type LLMResponse struct {
+	Reply    string   `json:"reply"`
+	Keywords []string `json:"keywords"`
+}
+
 // LLMProvider 大语言模型提供者接口
 type LLMProvider interface {
 	Provider
-	Chat(ctx context.Context, sessionID string, prompt string) (*Message, error)
+	Chat(ctx context.Context, sessionID string, prompt string) (*LLMResponse, error)
 	Response(ctx context.Context, sessionID string, messages []Message) (<-chan string, error)
 	ResponseWithFunctions(ctx context.Context, sessionID string, messages []Message, tools []openai.Tool) (<-chan Response, error)
 	StreamChat(ctx context.Context, sessionID, message string) (<-chan string, error)

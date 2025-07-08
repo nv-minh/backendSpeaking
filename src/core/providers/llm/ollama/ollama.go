@@ -43,7 +43,7 @@ func NewProvider(config *llm.Config) (llm.Provider, error) {
 	// 检查是否是qwen3模型
 	provider.isQwen3 = config.ModelName != "" && strings.HasPrefix(strings.ToLower(config.ModelName), "qwen3")
 
-	return provider, nil
+	return nil, nil
 }
 
 // Initialize 初始化提供者

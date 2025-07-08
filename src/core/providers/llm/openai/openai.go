@@ -41,7 +41,7 @@ func NewProvider(config *llm.Config) (llm.Provider, error) {
 		provider.maxTokens = 500
 	}
 
-	return provider, nil
+	return nil, nil
 }
 
 // Initialize 初始化提供者

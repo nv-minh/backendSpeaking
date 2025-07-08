@@ -271,7 +271,7 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 		return nil
 	})
 
-	sessionID := uuid.New().String() // Tạo sessionID ở đây để dùng trong log ping
+	sessionID := uuid.New().String()
 	go func() {
 		ticker := time.NewTicker(pingPeriod)
 		defer ticker.Stop()
@@ -290,7 +290,6 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 			}
 		}
 	}()
-	// --- Kết thúc thiết lập Heartbeat ---
 
 	sendJSON := func(msgType string, text string, isFinal bool) {
 		message, _ := json.Marshal(WsMessage{Type: msgType, Text: text, IsFinal: isFinal})
@@ -315,8 +314,11 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 	languageCode := ws.config.ASR["GoogleSTT"]["language_code"].(string)
 	ws.logger.Info("Bắt đầu phiên hội thoại với ID: %s", sessionID)
 
+	// <--- Biến để lưu trữ keywords cho lượt nói tiếp theo
+	var nextKeywords []string
+
 	// ===================================================================
-	// === VÒNG LẶP HỘI THOẠI CHÍNH (Tích hợp Lazy Initialization) ===
+	// === VÒNG LẶP HỘI THOẠI CHÍNH (Tích hợp Speech Adaptation Động) ===
 	// ===================================================================
 	for {
 		ws.logger.Info("[%s] Lượt mới: Đang chờ audio đầu tiên từ client...", sessionID)
@@ -335,6 +337,19 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 		}
 
 		ctx, cancelConversationTurn := context.WithCancel(r.Context())
+
+		// Tạo SpeechAdaptation DỰA TRÊN KEYWORDS TỪ LƯỢT TRƯỚC
+		var adaptation *speechpb.SpeechAdaptation
+		if len(nextKeywords) > 0 {
+			ws.logger.Info("[%s] Áp dụng speech adaptation với keywords: %v", sessionID, nextKeywords)
+			phrases := make([]*speechpb.PhraseSet_Phrase, len(nextKeywords))
+			for i, kw := range nextKeywords {
+				phrases[i] = &speechpb.PhraseSet_Phrase{Value: kw, Boost: 15}
+			}
+			adaptation = &speechpb.SpeechAdaptation{
+				PhraseSets: []*speechpb.PhraseSet{{Phrases: phrases}},
+			}
+		}
 
 		speechClient, err := speech.NewClient(ctx, option.WithCredentialsFile(credsFile))
 		if err != nil {
@@ -362,6 +377,7 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 						LanguageCode:               languageCode,
 						EnableAutomaticPunctuation: true,
 						Model:                      "latest_short",
+						Adaptation:                 adaptation, // <--- THÊM VÀO ĐÂY
 					},
 					InterimResults:  true,
 					SingleUtterance: true,
@@ -437,10 +453,10 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 				msgType, pcmChunk, err := conn.ReadMessage()
 				if err != nil {
 					ws.logger.Info("[%s] Client đóng kết nối hoặc lỗi đọc: %v", sessionID, err)
-					cancelConversationTurn() // Hủy context để dừng các goroutine liên quan
+					cancelConversationTurn()
 					sttStream.CloseSend()
 					speechClient.Close()
-					return // Thoát khỏi handler
+					return
 				}
 				if msgType == websocket.BinaryMessage {
 					if err := sttStream.Send(&speechpb.StreamingRecognizeRequest{
@@ -463,12 +479,17 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 			if err != nil {
 				ws.logger.Error("[%s] Lỗi gọi Gemini LLM: %v", sessionID, err)
 				sendJSON("error", "Bot: Xin lỗi, tôi đang gặp sự cố khi suy nghĩ.", true)
+				nextKeywords = nil
 			} else {
-				ws.logger.Info("[%s] Gemini trả lời: \"%s\"", sessionID, llmResp.Content)
-				sendJSON("bot_response", llmResp.Content, true)
+				botReply := llmResp.Reply
+				ws.logger.Info("[%s] Gemini trả lời: \"%s\"", sessionID, botReply)
+				sendJSON("bot_response", botReply, true)
+
+				// LƯU KEYWORDS CHO LƯỢT TIẾP THEO
+				nextKeywords = llmResp.Keywords
 
 				ws.logger.Info("[%s] Đang gọi TTS và streaming audio...", sessionID)
-				audioStream, err := ttsProvider.(*googletts.GoogleTTSProvider).StreamSynthesis(ctx, llmResp.Content)
+				audioStream, err := ttsProvider.(*googletts.GoogleTTSProvider).StreamSynthesis(ctx, llmResp.Reply)
 				if err != nil {
 					ws.logger.Error("[%s] Lỗi TTS: %v", sessionID, err)
 					sendJSON("error", "Bot: Tôi không thể nói câu trả lời.", true)
@@ -486,6 +507,7 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 			}
 		} else {
 			ws.logger.Info("[%s] Không nhận được transcript cuối cùng, bắt đầu lượt mới.", sessionID)
+			nextKeywords = nil
 		}
 
 		cancelConversationTurn()

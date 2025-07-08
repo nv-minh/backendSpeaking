@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 	"sync"
 	"xiaozhi-server-go/src/configs"
@@ -13,7 +14,7 @@ import (
 	"google.golang.org/api/iterator"
 	"google.golang.org/api/option"
 
-	"github.com/sashabaranov/go-openai" 
+	"github.com/sashabaranov/go-openai"
 	"xiaozhi-server-go/src/core/providers"
 )
 
@@ -98,9 +99,9 @@ func LoadJSONAsMap(path string) (map[string]interface{}, error) {
 }
 
 // Chat implement phần `Chat` của interface LLMProvider.
-func (p *GeminiProvider) Chat(ctx context.Context, sessionID string, prompt string) (*providers.Message, error) {
+func (p *GeminiProvider) Chat(ctx context.Context, sessionID string, prompt string) (*types.LLMResponse, error) { // <--- THAY ĐỔI 1: Chữ ký hàm
 	p.mu.Lock()
-
+	defer p.mu.Unlock()
 	chatSession, exists := p.sessions[sessionID]
 	if !exists {
 		modelName := p.Config().ModelName
@@ -109,28 +110,23 @@ func (p *GeminiProvider) Chat(ctx context.Context, sessionID string, prompt stri
 		}
 		model := p.client.GenerativeModel(modelName)
 		chatSession = model.StartChat()
+
 		config, _, _ := configs.LoadConfig()
 		systemPrompt := config.DefaultPrompt
 		if systemPrompt != "" {
-			// Thiết lập lịch sử ban đầu với vai trò của AI
-			// Việc này giúp "khóa" vai trò của AI ngay từ đầu.
-			// Chúng ta coi system prompt là lời 'chỉ thị' của người dùng,
-			// và AI trả lời 'OK' để xác nhận đã nhận chỉ thị.
 			chatSession.History = []*genai.Content{
 				{
 					Parts: []genai.Part{genai.Text(systemPrompt)},
 					Role:  "user",
 				},
 				{
-					Parts: []genai.Part{genai.Text("Got it. I'll be Lida from now on. lol, let's see what you've got.")},
-					Role:  "model", // 'model' là vai của AI trong thư viện Gemini
+					Parts: []genai.Part{genai.Text("{\"reply\": \"OK, I understand my role. I will be an English teacher and always respond in the required JSON format.\", \"keywords\": []}")},
+					Role:  "model",
 				},
 			}
 		}
 		p.sessions[sessionID] = chatSession
 	}
-
-	p.mu.Unlock()
 
 	resp, err := chatSession.SendMessage(ctx, genai.Text(prompt))
 	if err != nil {
@@ -138,17 +134,31 @@ func (p *GeminiProvider) Chat(ctx context.Context, sessionID string, prompt stri
 	}
 
 	if len(resp.Candidates) > 0 && resp.Candidates[0].Content != nil {
-		var content string
+		var jsonContent string
 		for _, part := range resp.Candidates[0].Content.Parts {
 			if txt, ok := part.(genai.Text); ok {
-				content += string(txt)
+				jsonContent += string(txt)
 			}
 		}
-		if content != "" {
-			return &providers.Message{
-				Role:    "assistant",
-				Content: content,
-			}, nil
+
+		if jsonContent != "" {
+			// Tạo một biến để chứa kết quả sau khi unmarshal
+			var llmResponse types.LLMResponse
+
+			// Unmarshal chuỗi JSON vào struct
+			if err := json.Unmarshal([]byte(jsonContent), &llmResponse); err != nil {
+				log.Printf("Lỗi unmarshal JSON từ Gemini: %v. Raw response: %s", err, jsonContent)
+
+				// Fallback: Nếu không phải JSON, coi toàn bộ là câu trả lời
+				// và không có keywords
+				return &types.LLMResponse{
+					Reply:    jsonContent,
+					Keywords: []string{},
+				}, nil
+			}
+
+			// Trả về con trỏ tới struct mới đã được điền dữ liệu
+			return &llmResponse, nil
 		}
 	}
 
