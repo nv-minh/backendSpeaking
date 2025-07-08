@@ -11,7 +11,9 @@ import (
 	"google.golang.org/api/option"
 	"io"
 	_ "io"
+	"log"
 	"net/http"
+	"os"
 	"sync"
 	"time"
 	"xiaozhi-server-go/src/configs"
@@ -310,7 +312,11 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 
 	llmProvider := providerSet.LLM
 	ttsProvider := providerSet.TTS
-	credsFile := ws.config.ASR["GoogleSTT"]["credentials_file"].(string)
+	// run on server
+	credsFile := createCredentialsFileFromEnv()
+	// run on local
+	//credsFile := ws.config.ASR["GoogleSTT"]["credentials_file"].(string)
+
 	languageCode := ws.config.ASR["GoogleSTT"]["language_code"].(string)
 	ws.logger.Info("Bắt đầu phiên hội thoại với ID: %s", sessionID)
 
@@ -512,4 +518,26 @@ func (ws *WebSocketServer) handleConversation(w http.ResponseWriter, r *http.Req
 
 		cancelConversationTurn()
 	}
+}
+
+func createCredentialsFileFromEnv() string {
+	credsJSON := os.Getenv("GOOGLE_CREDENTIALS_JSON")
+	if credsJSON == "" {
+		log.Fatal("Biến môi trường GOOGLE_CREDENTIALS_JSON không được thiết lập.")
+	}
+
+	tmpfile, err := os.CreateTemp("", "google-credentials-*.json")
+	if err != nil {
+		log.Fatalf("Không thể tạo file credentials tạm: %v", err)
+	}
+
+	if _, err := tmpfile.Write([]byte(credsJSON)); err != nil {
+		log.Fatalf("Không thể ghi vào file credentials tạm: %v", err)
+	}
+	if err := tmpfile.Close(); err != nil {
+		log.Fatalf("Không thể đóng file credentials tạm: %v", err)
+	}
+
+	log.Printf("Đã tạo file credentials tại: %s", tmpfile.Name())
+	return tmpfile.Name()
 }
